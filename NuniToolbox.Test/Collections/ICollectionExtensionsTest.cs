@@ -21,10 +21,23 @@ namespace NuniToolbox.Test.Collections
             Assert.Contains(collection, number => number == 1);
             Assert.Contains(collection, number => number == 2);
         }
+
         [Fact]
         public void Test_AddAll_OnHashSet_Ok()
         {
             ICollection<int> collection = new HashSet<int> { 0 };
+            collection.AddAll(new List<int> { 1, 2 });
+
+            Assert.Equal(3, collection.Count);
+            Assert.Contains(collection, number => number == 0);
+            Assert.Contains(collection, number => number == 1);
+            Assert.Contains(collection, number => number == 2);
+        }
+
+        [Fact]
+        public void Test_AddAll_OnExtendedObservableCollection_Ok()
+        {
+            ICollection<int> collection = new ExtendedObservableCollection<int> { 0 };
             collection.AddAll(new List<int> { 1, 2 });
 
             Assert.Equal(3, collection.Count);

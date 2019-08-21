@@ -16,7 +16,14 @@ namespace NuniToolbox.Collections
         /// <param name="collection"></param>
         public static void AddAll<T>(this ICollection<T> collection, IEnumerable<T> items)
         {
-            items.Foreach(item => collection.Add(item));
+            if (collection is ExtendedObservableCollection<T> observableCollection)
+            {
+                observableCollection.AddRange(items);
+            }
+            else
+            {
+                items.Foreach(item => collection.Add(item));
+            }
         }
     }
 }
