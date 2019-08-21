@@ -11,3 +11,4 @@
 * Extension methods for `ICollection`
   * `AddAll`
 * Optimized version of `ObservableCollection` for bulk operations
+* Translation of `enum` into display strings
