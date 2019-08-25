@@ -5,10 +5,17 @@ using System.Text;
 
 namespace NuniToolbox.Enum
 {
+    /// <summary>
+    /// Specific class for a translation source which build upon dictionaries to translate an enum value into a display string.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class DictionaryEnumTranslationSource<T> : EnumTranslationSource<T> where T : struct, IComparable, IConvertible, IFormattable
     {
         private IDictionary<EnumTranslationType, IDictionary<T, string>> m_translations;
 
+        /// <summary>
+        /// The abbreviations for the enum values.
+        /// </summary>
         public IDictionary<T, string> AbbreviationTranslations
         {
             get
@@ -22,6 +29,9 @@ namespace NuniToolbox.Enum
             }
         }
 
+        /// <summary>
+        /// The default (fallback) display string for the enum values.
+        /// </summary>
         public IDictionary<T, string> DefaultTranslations
         {
             get
@@ -35,6 +45,9 @@ namespace NuniToolbox.Enum
             }
         }
 
+        /// <summary>
+        /// The plural for the enum values.
+        /// </summary>
         public IDictionary<T, string> PluralTranslations
         {
             get
@@ -48,6 +61,9 @@ namespace NuniToolbox.Enum
             }
         }
 
+        /// <summary>
+        /// The singular vor the enum values.
+        /// </summary>
         public IDictionary<T, string> SingularTranslations
         {
             get
@@ -61,8 +77,15 @@ namespace NuniToolbox.Enum
             }
         }
 
+        /// <summary>
+        /// Creates a new <see cref="DictionaryEnumTranslationSource" />.
+        /// </summary>
         public DictionaryEnumTranslationSource() : this(null) { }
 
+        /// <summary>
+        /// Creates a new <see cref="DictionaryEnumTranslationSource" />.
+        /// </summary>
+        /// <param name="language"></param>
         public DictionaryEnumTranslationSource(CultureInfo language)
             : base(language)
         {
@@ -76,7 +99,13 @@ namespace NuniToolbox.Enum
             return translations;
         }
 
-        public override string GetStringForValue(T enumValue, EnumTranslationType translationType)
+        /// <summary>
+        /// Returns the display string of the specified enum value for the specified use case.
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <param name="translationType"></param>
+        /// <returns></returns>
+        public override string GetStringForValue(T enumValue, EnumTranslationType translationType = EnumTranslationType.Default)
         {
             string translation = GetStringForValueInternal(enumValue, translationType);
 

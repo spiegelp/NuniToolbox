@@ -13,7 +13,7 @@ namespace NuniToolbox.Model
         private T m_id;
 
         /// <summary>
-        /// The ID if the object
+        /// The ID if the object.
         /// </summary>
         public T Id
         {
@@ -30,6 +30,9 @@ namespace NuniToolbox.Model
             }
         }
 
+        /// <summary>
+        /// Creates a new <see cref="ModelObjectWithId" />.
+        /// </summary>
         public ModelObjectWithId()
             : base()
         {

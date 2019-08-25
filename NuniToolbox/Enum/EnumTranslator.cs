@@ -6,17 +6,34 @@ using System.Text;
 
 namespace NuniToolbox.Enum
 {
+    /// <summary>
+    /// Translator to translate enum values into display strings for specific languages and use cases (i.e. singular, plural, abbreviation).
+    /// This class is thread-safe.
+    /// First, register translations using the <see cref="RegisterTranslationSource{T}(IEnumTranslationSource{T})" /> method.
+    /// Second, get a display string using the <see cref="GetStringForValue{T}(T, CultureInfo, EnumTranslationType)" /> method.
+    /// </summary>
     public class EnumTranslator
     {
         private object m_lockObject = new object();
 
         private IDictionary<Type, IDictionary<string, object>> m_translationSourcesByType;
 
+        /// <summary>
+        /// Creates a new <see cref="EnumTranslator" />.
+        /// </summary>
         public EnumTranslator()
         {
             m_translationSourcesByType = new Dictionary<Type, IDictionary<string, object>>();
         }
 
+        /// <summary>
+        /// Returns the display string of the specified enum value for the specified language and use case.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumValue"></param>
+        /// <param name="language"></param>
+        /// <param name="translationType"></param>
+        /// <returns></returns>
         public string GetStringForValue<T>(T enumValue, CultureInfo language = null, EnumTranslationType translationType = EnumTranslationType.Default) where T : struct, IComparable, IConvertible, IFormattable
         {
             lock (m_lockObject)
@@ -49,6 +66,13 @@ namespace NuniToolbox.Enum
             }
         }
 
+        /// <summary>
+        /// Returns all enum values sorted by their display string for the specified language and use case.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="language"></param>
+        /// <param name="translationType"></param>
+        /// <returns></returns>
         public T[] GetValuesSortedByTranslation<T>(CultureInfo language = null, EnumTranslationType translationType = EnumTranslationType.Default) where T : struct, IComparable, IConvertible, IFormattable
         {
             lock (m_lockObject)
@@ -80,6 +104,11 @@ namespace NuniToolbox.Enum
             }
         }
 
+        /// <summary>
+        /// Registers a translation source to translate enum values into display strings.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="translationSource"></param>
         public void RegisterTranslationSource<T>(IEnumTranslationSource<T> translationSource) where T : struct, IComparable, IConvertible, IFormattable
         {
             lock (m_lockObject)
