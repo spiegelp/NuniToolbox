@@ -104,6 +104,27 @@ namespace NuniToolbox.Test.Collections
             }
         }
 
+        [Theory]
+        [InlineData(1024, new int[] { 5, 8, 7, 3, 1, 4, 2, 6 })]
+        [InlineData(323232, new int[] { 2, 8, 5, 4, 6, 7, 1, 3 })]
+        [InlineData(666666, new int[] { 3, 7, 5, 6, 4, 2, 1, 8 })]
+        public void Test_Shuffle_Ok(int seed, int[] expected)
+        {
+            IEnumerable<int> numbers = Enumerable.Range(1, 8);
+
+            // use Random with a seed to get an expected list of random numbers
+            List<int> numbersSorted = numbers.Shuffle(new Random(seed));
+
+            Assert.Equal(expected[0], numbersSorted[0]);
+            Assert.Equal(expected[1], numbersSorted[1]);
+            Assert.Equal(expected[2], numbersSorted[2]);
+            Assert.Equal(expected[3], numbersSorted[3]);
+            Assert.Equal(expected[4], numbersSorted[4]);
+            Assert.Equal(expected[5], numbersSorted[5]);
+            Assert.Equal(expected[6], numbersSorted[6]);
+            Assert.Equal(expected[7], numbersSorted[7]);
+        }
+
         public class MyModel
         {
             public int Sum { get; set; }

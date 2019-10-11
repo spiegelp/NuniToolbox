@@ -126,7 +126,7 @@ namespace NuniToolbox.Collections
         #region Sorted
 
         /// <summary>
-        /// Returns a sorted instance of enumerable.
+        /// Returns a sorted instance of the enumerable.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TKey"></typeparam>
@@ -169,5 +169,44 @@ namespace NuniToolbox.Collections
         }
 
         #endregion Sorted
+
+
+
+        #region Shuffle
+
+        /// <summary>
+        /// Returns a shuffled list using Durstenfeld's version of the Fisher-Yates shuffle.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable"></param>
+        /// <returns></returns>
+        public static List<T> Shuffle<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable.Shuffle(new Random());
+        }
+
+        /// <summary>
+        /// Returns a shuffled list using Durstenfeld's version of the Fisher-Yates shuffle.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable"></param>
+        /// <param name="random"></param>
+        /// <returns></returns>
+        public static List<T> Shuffle<T>(this IEnumerable<T> enumerable, Random random)
+        {
+            List<T> list = enumerable.ToList();
+
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int j = random.Next(0, i + 1);
+                T temp = list[i];
+                list[i] = list[j];
+                list[j] = temp;
+            }
+
+            return list;
+        }
+
+        #endregion
     }
 }
