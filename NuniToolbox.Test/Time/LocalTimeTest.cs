@@ -69,6 +69,36 @@ namespace NuniToolbox.Test.Time
         }
 
         [Fact]
+        public void Test_Min_Ok()
+        {
+            LocalTime localTime = LocalTime.Min;
+
+            Assert.Equal(0, localTime.Hours);
+            Assert.Equal(0, localTime.Minutes);
+            Assert.Equal(0, localTime.Seconds);
+            Assert.Equal(0, localTime.Milliseconds);
+        }
+
+        [Fact]
+        public void Test_Max_Ok()
+        {
+            LocalTime localTime = LocalTime.Max;
+
+            Assert.Equal(23, localTime.Hours);
+            Assert.Equal(59, localTime.Minutes);
+            Assert.Equal(59, localTime.Seconds);
+            Assert.Equal(999, localTime.Milliseconds);
+        }
+
+        [Fact]
+        public void Test_TotalMilliseconds_Ok()
+        {
+            LocalTime localTime = new LocalTime(2, 4, 8, 512);
+
+            Assert.Equal((long)localTime.ToDateTime().TimeOfDay.TotalMilliseconds, localTime.TotalMilliseconds);
+        }
+
+        [Fact]
         public void Test_WithHours_Ok()
         {
             LocalTime localTime = new LocalTime(2, 4).WithHours(4);
@@ -396,6 +426,82 @@ namespace NuniToolbox.Test.Time
             LocalTime localTime2 = new LocalTime(2, 4, 0, 0);
 
             Assert.False(localTime1 != localTime2);
+        }
+
+        [Fact]
+        public void Test_Less_True()
+        {
+            Assert.True(new LocalTime(2, 4) < new LocalTime(3, 4));
+            Assert.True(new LocalTime(3, 2) < new LocalTime(3, 4));
+            Assert.True(new LocalTime(2, 4, 8) < new LocalTime(2, 4, 16));
+            Assert.True(new LocalTime(2, 4, 8, 256) < new LocalTime(2, 4, 8, 512));
+        }
+
+        [Fact]
+        public void Test_Less_False()
+        {
+            Assert.False(new LocalTime(3, 4) < new LocalTime(2, 4));
+            Assert.False(new LocalTime(3, 4) < new LocalTime(3, 2));
+            Assert.False(new LocalTime(2, 4, 16) < new LocalTime(2, 4, 8));
+            Assert.False(new LocalTime(2, 4, 8, 512) < new LocalTime(2, 4, 8, 256));
+            Assert.False(new LocalTime(2, 4) < new LocalTime(2, 4));
+        }
+
+        [Fact]
+        public void Test_LessThan_True()
+        {
+            Assert.True(new LocalTime(2, 4) <= new LocalTime(3, 4));
+            Assert.True(new LocalTime(3, 2) <= new LocalTime(3, 4));
+            Assert.True(new LocalTime(2, 4, 8) <= new LocalTime(2, 4, 16));
+            Assert.True(new LocalTime(2, 4, 8, 256) <= new LocalTime(2, 4, 8, 512));
+            Assert.True(new LocalTime(2, 4) <= new LocalTime(2, 4));
+        }
+
+        [Fact]
+        public void Test_LessThan_False()
+        {
+            Assert.False(new LocalTime(3, 4) <= new LocalTime(2, 4));
+            Assert.False(new LocalTime(3, 4) <= new LocalTime(3, 2));
+            Assert.False(new LocalTime(2, 4, 16) <= new LocalTime(2, 4, 8));
+            Assert.False(new LocalTime(2, 4, 8, 512) <= new LocalTime(2, 4, 8, 256));
+        }
+
+        [Fact]
+        public void Test_Greater_True()
+        {
+            Assert.True(new LocalTime(3, 4) > new LocalTime(2, 4));
+            Assert.True(new LocalTime(3, 4) > new LocalTime(3, 2));
+            Assert.True(new LocalTime(2, 4, 16) > new LocalTime(2, 4, 8));
+            Assert.True(new LocalTime(2, 4, 8, 512) > new LocalTime(2, 4, 8, 256));
+        }
+
+        [Fact]
+        public void Test_Greater_False()
+        {
+            Assert.False(new LocalTime(2, 4) > new LocalTime(3, 4));
+            Assert.False(new LocalTime(3, 2) > new LocalTime(3, 4));
+            Assert.False(new LocalTime(2, 4, 8) > new LocalTime(2, 4, 16));
+            Assert.False(new LocalTime(2, 4, 8, 256) > new LocalTime(2, 4, 8, 512));
+            Assert.False(new LocalTime(2, 4) > new LocalTime(2, 4));
+        }
+
+        [Fact]
+        public void Test_GreateThan_True()
+        {
+            Assert.True(new LocalTime(3, 4) >= new LocalTime(2, 4));
+            Assert.True(new LocalTime(3, 4) >= new LocalTime(3, 2));
+            Assert.True(new LocalTime(2, 4, 16) >= new LocalTime(2, 4, 8));
+            Assert.True(new LocalTime(2, 4, 8, 512) >= new LocalTime(2, 4, 8, 256));
+            Assert.True(new LocalTime(2, 4) >= new LocalTime(2, 4));
+        }
+
+        [Fact]
+        public void Test_GreaterThan_False()
+        {
+            Assert.False(new LocalTime(2, 4) >= new LocalTime(3, 4));
+            Assert.False(new LocalTime(3, 2) >= new LocalTime(3, 4));
+            Assert.False(new LocalTime(2, 4, 8) >= new LocalTime(2, 4, 16));
+            Assert.False(new LocalTime(2, 4, 8, 256) >= new LocalTime(2, 4, 8, 512));
         }
 
         [Fact]

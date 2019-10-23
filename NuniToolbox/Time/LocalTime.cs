@@ -28,6 +28,17 @@ namespace NuniToolbox.Time
         }
 
         /// <summary>
+        /// Returns the maximum <see cref="LocalTime" /> as 23:59:59.999.
+        /// </summary>
+        public static LocalTime Max
+        {
+            get
+            {
+                return new LocalTime(23, 59, 59, 999);
+            }
+        }
+
+        /// <summary>
         /// Returns the minutes component.
         /// </summary>
         public int Minutes
@@ -50,6 +61,28 @@ namespace NuniToolbox.Time
         }
 
         /// <summary>
+        /// Returns the minimum <see cref="LocalTime" /> as 00:00:00.000.
+        /// </summary>
+        public static LocalTime Min
+        {
+            get
+            {
+                return new LocalTime(0, 0, 0, 0);
+            }
+        }
+
+        /// <summary>
+        /// Returns the current time.
+        /// </summary>
+        public static LocalTime Now
+        {
+            get
+            {
+                return new LocalTime(DateTime.Now);
+            }
+        }
+
+        /// <summary>
         /// Returns the seconds component.
         /// </summary>
         public int Seconds
@@ -57,6 +90,17 @@ namespace NuniToolbox.Time
             get
             {
                 return m_seconds;
+            }
+        }
+
+        /// <summary>
+        /// The time as total milliseconds after 00:00:00.000.
+        /// </summary>
+        public long TotalMilliseconds
+        {
+            get
+            {
+                return m_milliseconds + m_seconds * 1000 + m_minutes * 60 * 1000 + m_hours * 60 * 60 * 1000;
             }
         }
 
@@ -207,20 +251,6 @@ namespace NuniToolbox.Time
         /// <returns></returns>
         public LocalTime AddHours(int hours)
         {
-            /*if (hours == 0)
-            {
-                return new LocalTime(m_hours, m_minutes, m_seconds, m_milliseconds);
-            }
-
-            int newHours = Math.Abs(m_hours + hours) % 24;
-
-            if (hours < 0)
-            {
-                newHours = 24 - newHours;
-            }
-
-            return new LocalTime(newHours, m_minutes, m_seconds, m_milliseconds);*/
-
             if (hours == 0)
             {
                 return new LocalTime(m_hours, m_minutes, m_seconds, m_milliseconds);
@@ -298,7 +328,7 @@ namespace NuniToolbox.Time
         }
 
         /// <summary>
-        /// Formats this <see cref="LocalTime"/> as ISO 8601 compliant time string (HH:mm:ss.fff -> 02:04:08.512).
+        /// Formats this <see cref="LocalTime" /> as ISO 8601 compliant time string (HH:mm:ss.fff -> 02:04:08.512).
         /// </summary>
         /// <returns></returns>
         public string ToIsoString()
@@ -307,7 +337,7 @@ namespace NuniToolbox.Time
         }
 
         /// <summary>
-        /// Formats this <see cref="LocalTime"/> as ISO 8601 compliant time string (HH:mm:ss.fff -> 02:04:08.512).
+        /// Formats this <see cref="LocalTime" /> as ISO 8601 compliant time string (HH:mm:ss.fff -> 02:04:08.512).
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -316,7 +346,7 @@ namespace NuniToolbox.Time
         }
 
         /// <summary>
-        /// Formats this <see cref="LocalTime"/> using the specified format.
+        /// Formats this <see cref="LocalTime" /> using the specified format.
         /// </summary>
         /// <param name="format"></param>
         /// <returns></returns>
@@ -326,7 +356,7 @@ namespace NuniToolbox.Time
         }
 
         /// <summary>
-        /// Formats this <see cref="LocalTime"/> using the specified format provider.
+        /// Formats this <see cref="LocalTime" /> using the specified format provider.
         /// </summary>
         /// <param name="formatProvider"></param>
         /// <returns></returns>
@@ -337,7 +367,7 @@ namespace NuniToolbox.Time
 
 
         /// <summary>
-        /// Formats this <see cref="LocalTime"/> using the specified format and format provider.
+        /// Formats this <see cref="LocalTime" /> using the specified format and format provider.
         /// </summary>
         /// <param name="format"></param>
         /// <param name="formatProvider"></param>
@@ -358,6 +388,26 @@ namespace NuniToolbox.Time
         public static bool operator !=(LocalTime localTime, LocalTime otherLocalTime)
         {
             return !(localTime == otherLocalTime);
+        }
+
+        public static bool operator <(LocalTime localTime, LocalTime otherLocalTime)
+        {
+            return localTime.TotalMilliseconds < otherLocalTime.TotalMilliseconds;
+        }
+
+        public static bool operator <=(LocalTime localTime, LocalTime otherLocalTime)
+        {
+            return localTime.TotalMilliseconds <= otherLocalTime.TotalMilliseconds;
+        }
+
+        public static bool operator >(LocalTime localTime, LocalTime otherLocalTime)
+        {
+            return localTime.TotalMilliseconds > otherLocalTime.TotalMilliseconds;
+        }
+
+        public static bool operator >=(LocalTime localTime, LocalTime otherLocalTime)
+        {
+            return localTime.TotalMilliseconds >= otherLocalTime.TotalMilliseconds;
         }
     }
 }
