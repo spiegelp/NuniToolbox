@@ -47,7 +47,16 @@ namespace NuniToolbox.Time
         /// <returns></returns>
         public static int Number(this Month month)
         {
-            return (int)month;
+            int monthNumber = (int)month;
+
+            if (monthNumber >= (int)Month.January && monthNumber <= (int)Month.December)
+            {
+                return (int)month;
+            }
+            else
+            {
+                throw new ArgumentException("invalid month argument", nameof(month));
+            }
         }
 
         /// <summary>

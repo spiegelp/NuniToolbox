@@ -42,6 +42,15 @@ namespace NuniToolbox.Test.Time
         }
 
         [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(13)]
+        public void Test_Days_ArgumentException(int monthValue)
+        {
+            Assert.Throws<ArgumentException>(() => ((Month)monthValue).Days(false));
+        }
+
+        [Theory]
         [InlineData(Month.January, 1)]
         [InlineData(Month.February, 2)]
         [InlineData(Month.March, 3)]
@@ -57,6 +66,15 @@ namespace NuniToolbox.Test.Time
         public void Test_Number_Ok(Month month, int expectedNumber)
         {
             Assert.Equal(expectedNumber, month.Number());
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(13)]
+        public void Test_Number_ArgumentException(int monthValue)
+        {
+            Assert.Throws<ArgumentException>(() => ((Month)monthValue).Number());
         }
 
         [Fact]

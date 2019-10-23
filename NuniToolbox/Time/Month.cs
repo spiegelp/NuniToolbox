@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NuniToolbox.Time
 {
-    public enum Month
+    public enum Month : int
     {
         January = 1,
         February = 2,
