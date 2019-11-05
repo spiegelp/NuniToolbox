@@ -79,11 +79,23 @@ namespace NuniToolbox.Test.Time
         [Fact]
         public void Test_IsLeapDay_Ok()
         {
-            Assert.True(new LocalDate(2000, Month.February, 29).IsLeapDay());
-            Assert.True(new LocalDate(2020, Month.February, 29).IsLeapDay());
-            Assert.False(new LocalDate(2000, Month.February, 28).IsLeapDay());
-            Assert.False(new LocalDate(2000, Month.April, 4).IsLeapDay());
-            Assert.False(new LocalDate(1999, Month.April, 4).IsLeapDay());
+            Assert.True(new LocalDate(2000, Month.February, 29).IsLeapDay);
+            Assert.True(new LocalDate(2020, Month.February, 29).IsLeapDay);
+            Assert.False(new LocalDate(2000, Month.February, 28).IsLeapDay);
+            Assert.False(new LocalDate(2000, Month.April, 4).IsLeapDay);
+            Assert.False(new LocalDate(1999, Month.April, 4).IsLeapDay);
+        }
+
+        [Fact]
+        public void Test_Weekday_Ok()
+        {
+            Assert.Equal(Weekday.Monday, new LocalDate(2019, Month.November, 11).Weekday);
+            Assert.Equal(Weekday.Tuesday, new LocalDate(2019, Month.January, 1).Weekday);
+            Assert.Equal(Weekday.Wednesday, new LocalDate(2019, Month.August, 7).Weekday);
+            Assert.Equal(Weekday.Thursday, new LocalDate(2019, Month.October, 31).Weekday);
+            Assert.Equal(Weekday.Friday, new LocalDate(2019, Month.November, 1).Weekday);
+            Assert.Equal(Weekday.Saturday, new LocalDate(2019, Month.October, 26).Weekday);
+            Assert.Equal(Weekday.Sunday, new LocalDate(2019, Month.September, 29).Weekday);
         }
 
         [Fact]
@@ -308,6 +320,14 @@ namespace NuniToolbox.Test.Time
             DateTime expected = new DateTime(2019, 11, 5, 20, 47, 32, 512);
 
             Assert.Equal(expected, localDate.AtTime(localTime));
+        }
+
+        [Fact]
+        public void Test_FirstDayOfWeek_Ok()
+        {
+            Assert.Equal(new LocalDate(2019, Month.November, 4), new LocalDate(2019, Month.November, 5).FirstDayOfWeek());
+            Assert.Equal(new LocalDate(2018, Month.December, 31), new LocalDate(2019, Month.January, 4).FirstDayOfWeek());
+            Assert.Equal(new LocalDate(2018, Month.December, 31), new LocalDate(2018, Month.December, 31).FirstDayOfWeek());
         }
 
         [Fact]

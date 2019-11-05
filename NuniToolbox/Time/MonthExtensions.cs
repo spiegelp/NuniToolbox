@@ -5,6 +5,9 @@ using System.Text;
 
 namespace NuniToolbox.Time
 {
+    /// <summary>
+    /// Contains extensions methods for the <see cref="Month" /> enum.
+    /// </summary>
     public static class MonthExtensions
     {
         /// <summary>

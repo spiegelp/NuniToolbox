@@ -38,6 +38,18 @@ namespace NuniToolbox.Time
         }
 
         /// <summary>
+        /// Returns true, if this date is a 29th February of a leap year
+        /// </summary>
+        /// <returns></returns>
+        public bool IsLeapDay
+        {
+            get
+            {
+                return YearUtil.IsLeapYear(m_year) && m_month == Month.February && m_day == Month.February.Days(true);
+            }
+        }
+
+        /// <summary>
         /// Returns the month component.
         /// </summary>
         public Month Month
@@ -56,6 +68,17 @@ namespace NuniToolbox.Time
             get
             {
                 return new LocalDate(DateTime.Today);
+            }
+        }
+
+        /// <summary>
+        /// Returns the weekday of this date.
+        /// </summary>
+        public Weekday Weekday
+        {
+            get
+            {
+                return WeekdayExtensions.WeekdayForDayOfWeek(ToDateTime().DayOfWeek);
             }
         }
 
@@ -136,15 +159,6 @@ namespace NuniToolbox.Time
         }
 
         /// <summary>
-        /// Returns true, if this date is a 29th February of a leap year
-        /// </summary>
-        /// <returns></returns>
-        public bool IsLeapDay()
-        {
-            return YearUtil.IsLeapYear(m_year) && m_month == Month.February && m_day == Month.February.Days(true);
-        }
-
-        /// <summary>
         /// Returns a new <see cref="LocalDate" /> with the specified year.
         /// If the day of month is invalid for the new year, it will be changed to the last valid day of the month.
         /// </summary>
@@ -158,7 +172,7 @@ namespace NuniToolbox.Time
             Month month = m_month;
             int day = m_day;
 
-            if (IsLeapDay() && !YearUtil.IsLeapYear(year))
+            if (IsLeapDay && !YearUtil.IsLeapYear(year))
             {
                 day = Month.February.Days(false);
             }
@@ -257,6 +271,30 @@ namespace NuniToolbox.Time
         public DateTime AtTime(LocalTime localTime)
         {
             return new DateTime(m_year, m_month.Number(), m_day, localTime.Hour, localTime.Minute, localTime.Second, localTime.Millisecond);
+        }
+
+        /// <summary>
+        /// Returns the first day (a Monday) of the week of this date.
+        /// </summary>
+        /// <returns></returns>
+        public LocalDate FirstDayOfWeek()
+        {
+            return FirstDayOfWeek(this);
+        }
+
+        /// <summary>
+        /// Returns the first day (a Monday) of the week of the specified <see cref="LocalDate" />.
+        /// </summary>
+        /// <param name="localDate"></param>
+        /// <returns></returns>
+        public static LocalDate FirstDayOfWeek(LocalDate localDate)
+        {
+            while (localDate.Weekday != Weekday.Monday)
+            {
+                localDate = localDate.AddDays(-1);
+            }
+
+            return localDate;
         }
 
         public override bool Equals(object obj)
