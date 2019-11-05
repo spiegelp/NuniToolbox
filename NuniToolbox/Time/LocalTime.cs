@@ -11,63 +11,51 @@ namespace NuniToolbox.Time
     /// </summary>
     public struct LocalTime
     {
-        private readonly int m_hours;
-        private readonly int m_minutes;
-        private readonly int m_seconds;
-        private readonly int m_milliseconds;
+        /// <summary>
+        /// The minimum <see cref="LocalTime" /> of 00:00:00.000.
+        /// </summary>
+        public static readonly LocalTime Min = new LocalTime(0, 0, 0, 0);
 
         /// <summary>
-        /// Returns the hours component.
+        /// The maximum <see cref="LocalTime" /> of 23:59:59.999.
         /// </summary>
-        public int Hours
+        public static readonly LocalTime Max = new LocalTime(23, 59, 59, 999);
+
+        private readonly int m_hour;
+        private readonly int m_minute;
+        private readonly int m_second;
+        private readonly int m_millisecond;
+
+        /// <summary>
+        /// Returns the hour component.
+        /// </summary>
+        public int Hour
         {
             get
             {
-                return m_hours;
+                return m_hour;
             }
         }
 
         /// <summary>
-        /// Returns the maximum <see cref="LocalTime" /> as 23:59:59.999.
+        /// Returns the minute component.
         /// </summary>
-        public static LocalTime Max
+        public int Minute
         {
             get
             {
-                return new LocalTime(23, 59, 59, 999);
+                return m_minute;
             }
         }
 
         /// <summary>
-        /// Returns the minutes component.
+        /// Returns the millisecond component.
         /// </summary>
-        public int Minutes
+        public int Millisecond
         {
             get
             {
-                return m_minutes;
-            }
-        }
-
-        /// <summary>
-        /// Returns the milliseconds component.
-        /// </summary>
-        public int Milliseconds
-        {
-            get
-            {
-                return m_milliseconds;
-            }
-        }
-
-        /// <summary>
-        /// Returns the minimum <see cref="LocalTime" /> as 00:00:00.000.
-        /// </summary>
-        public static LocalTime Min
-        {
-            get
-            {
-                return new LocalTime(0, 0, 0, 0);
+                return m_millisecond;
             }
         }
 
@@ -83,13 +71,13 @@ namespace NuniToolbox.Time
         }
 
         /// <summary>
-        /// Returns the seconds component.
+        /// Returns the second component.
         /// </summary>
-        public int Seconds
+        public int Second
         {
             get
             {
-                return m_seconds;
+                return m_second;
             }
         }
 
@@ -100,7 +88,7 @@ namespace NuniToolbox.Time
         {
             get
             {
-                return m_milliseconds + m_seconds * 1000 + m_minutes * 60 * 1000 + m_hours * 60 * 60 * 1000;
+                return m_millisecond + m_second * 1000 + m_minute * 60 * 1000 + m_hour * 60 * 60 * 1000;
             }
         }
 
@@ -133,10 +121,10 @@ namespace NuniToolbox.Time
             CheckSeconds(seconds);
             CheckMilliseconds(milliseconds);
 
-            m_hours = hours;
-            m_minutes = minutes;
-            m_seconds = seconds;
-            m_milliseconds = milliseconds;
+            m_hour = hours;
+            m_minute = minutes;
+            m_second = seconds;
+            m_millisecond = milliseconds;
         }
 
         /// <summary>
@@ -145,10 +133,10 @@ namespace NuniToolbox.Time
         /// <param name="dateTime"></param>
         public LocalTime(DateTime dateTime)
         {
-            m_hours = dateTime.Hour;
-            m_minutes = dateTime.Minute;
-            m_seconds = dateTime.Second;
-            m_milliseconds = dateTime.Millisecond;
+            m_hour = dateTime.Hour;
+            m_minute = dateTime.Minute;
+            m_second = dateTime.Second;
+            m_millisecond = dateTime.Millisecond;
         }
 
         /// <summary>
@@ -158,41 +146,53 @@ namespace NuniToolbox.Time
         public DateTime ToDateTime()
         {
             return DateTime.Today
-                .AddHours(m_hours)
-                .AddMinutes(m_minutes)
-                .AddSeconds(m_seconds)
-                .AddMilliseconds(m_milliseconds);
+                .AddHours(m_hour)
+                .AddMinutes(m_minute)
+                .AddSeconds(m_second)
+                .AddMilliseconds(m_millisecond);
         }
 
         private static void CheckHours(int hours)
         {
-            if (hours < 0 || hours > 23)
+            int minHours = 0;
+            int maxHours = 23;
+
+            if (hours < minHours || hours > maxHours)
             {
-                throw new ArgumentException($"{hours} must be between 0 and 23");
+                throw new ArgumentOutOfRangeException($"{nameof(hours)} must be between {minHours} and {maxHours}");
             }
         }
 
         private static void CheckMinutes(int minutes)
         {
-            if (minutes < 0 || minutes > 59)
+            int minMinutes = 0;
+            int maxMinutes = 59;
+
+            if (minutes < minMinutes || minutes > maxMinutes)
             {
-                throw new ArgumentException($"{minutes} must be between 0 and 59");
+                throw new ArgumentOutOfRangeException($"{nameof(minutes)} must be between {minMinutes} and {maxMinutes}");
             }
         }
 
         private static void CheckSeconds(int seconds)
         {
-            if (seconds < 0 || seconds > 59)
+            int minSeconds = 0;
+            int maxSeconds = 59;
+
+            if (seconds < minSeconds || seconds > maxSeconds)
             {
-                throw new ArgumentException($"{seconds} must be between 0 and 59");
+                throw new ArgumentOutOfRangeException($"{nameof(seconds)} must be between {minSeconds} and {maxSeconds}");
             }
         }
 
         private static void CheckMilliseconds(int milliseconds)
         {
-            if (milliseconds < 0 || milliseconds > 999)
+            int minMilliseconds = 0;
+            int maxMilliseconds = 999;
+
+            if (milliseconds < minMilliseconds || milliseconds > maxMilliseconds)
             {
-                throw new ArgumentException($"{milliseconds} must be between 0 and 999");
+                throw new ArgumentOutOfRangeException($"{milliseconds} must be between {minMilliseconds} and {maxMilliseconds}");
             }
         }
 
@@ -205,7 +205,7 @@ namespace NuniToolbox.Time
         {
             CheckHours(hours);
 
-            return new LocalTime(hours, m_minutes, m_seconds, m_milliseconds);
+            return new LocalTime(hours, m_minute, m_second, m_millisecond);
         }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace NuniToolbox.Time
         {
             CheckMinutes(minutes);
 
-            return new LocalTime(m_hours, minutes, m_seconds, m_milliseconds);
+            return new LocalTime(m_hour, minutes, m_second, m_millisecond);
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace NuniToolbox.Time
         {
             CheckSeconds(seconds);
 
-            return new LocalTime(m_hours, m_minutes, seconds, m_milliseconds);
+            return new LocalTime(m_hour, m_minute, seconds, m_millisecond);
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace NuniToolbox.Time
         {
             CheckMilliseconds(milliseconds);
 
-            return new LocalTime(m_hours, m_minutes, m_seconds, milliseconds);
+            return new LocalTime(m_hour, m_minute, m_second, milliseconds);
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace NuniToolbox.Time
         {
             if (hours == 0)
             {
-                return new LocalTime(m_hours, m_minutes, m_seconds, m_milliseconds);
+                return new LocalTime(m_hour, m_minute, m_second, m_millisecond);
             }
 
             return new LocalTime(ToDateTime().AddHours(hours));
@@ -268,7 +268,7 @@ namespace NuniToolbox.Time
         {
             if (minutes == 0)
             {
-                return new LocalTime(m_hours, m_minutes, m_seconds, m_milliseconds);
+                return new LocalTime(m_hour, m_minute, m_second, m_millisecond);
             }
 
             return new LocalTime(ToDateTime().AddMinutes(minutes));
@@ -283,7 +283,7 @@ namespace NuniToolbox.Time
         {
             if (seconds == 0)
             {
-                return new LocalTime(m_hours, m_minutes, m_seconds, m_milliseconds);
+                return new LocalTime(m_hour, m_minute, m_second, m_millisecond);
             }
 
             return new LocalTime(ToDateTime().AddSeconds(seconds));
@@ -298,10 +298,20 @@ namespace NuniToolbox.Time
         {
             if (milliseconds == 0)
             {
-                return new LocalTime(m_hours, m_minutes, m_seconds, m_milliseconds);
+                return new LocalTime(m_hour, m_minute, m_second, m_millisecond);
             }
 
             return new LocalTime(ToDateTime().AddMilliseconds(milliseconds));
+        }
+
+        /// <summary>
+        /// Combines this <see cref="LocalTime" /> with the specified <see cref="LocalDate" /> to a full <see cref="DateTime" />.
+        /// </summary>
+        /// <param name="localDate"></param>
+        /// <returns></returns>
+        public DateTime AtDate(LocalDate localDate)
+        {
+            return new DateTime(localDate.Year, localDate.Month.Number(), localDate.Day, m_hour, m_minute, m_second, m_millisecond);
         }
 
         public override bool Equals(object obj)
@@ -319,10 +329,10 @@ namespace NuniToolbox.Time
         public override int GetHashCode()
         {
             int hashCode = 1365636279;
-            hashCode = hashCode * -1521134295 + m_hours.GetHashCode();
-            hashCode = hashCode * -1521134295 + m_minutes.GetHashCode();
-            hashCode = hashCode * -1521134295 + m_seconds.GetHashCode();
-            hashCode = hashCode * -1521134295 + m_milliseconds.GetHashCode();
+            hashCode = hashCode * -1521134295 + m_hour.GetHashCode();
+            hashCode = hashCode * -1521134295 + m_minute.GetHashCode();
+            hashCode = hashCode * -1521134295 + m_second.GetHashCode();
+            hashCode = hashCode * -1521134295 + m_millisecond.GetHashCode();
 
             return hashCode;
         }
@@ -333,7 +343,7 @@ namespace NuniToolbox.Time
         /// <returns></returns>
         public string ToIsoString()
         {
-            return string.Format("{0}:{1}:{2}.{3}", m_hours.ToString("00"), m_minutes.ToString("00"), m_seconds.ToString("00"), m_milliseconds.ToString("000"));
+            return string.Format("{0}:{1}:{2}.{3}", m_hour.ToString("00"), m_minute.ToString("00"), m_second.ToString("00"), m_millisecond.ToString("000"));
         }
 
         /// <summary>
@@ -379,10 +389,10 @@ namespace NuniToolbox.Time
 
         public static bool operator ==(LocalTime localTime, LocalTime otherLocalTime)
         {
-            return localTime.m_hours == otherLocalTime.m_hours
-                && localTime.m_minutes == otherLocalTime.m_minutes
-                && localTime.m_seconds == otherLocalTime.m_seconds
-                && localTime.m_milliseconds == otherLocalTime.m_milliseconds;
+            return localTime.m_hour == otherLocalTime.m_hour
+                && localTime.m_minute == otherLocalTime.m_minute
+                && localTime.m_second == otherLocalTime.m_second
+                && localTime.m_millisecond == otherLocalTime.m_millisecond;
         }
 
         public static bool operator !=(LocalTime localTime, LocalTime otherLocalTime)

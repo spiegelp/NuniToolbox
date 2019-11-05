@@ -16,44 +16,44 @@ namespace NuniToolbox.Test.Time
         {
             LocalTime localTime = new LocalTime(2, 4);
 
-            Assert.Equal(2, localTime.Hours);
-            Assert.Equal(4, localTime.Minutes);
-            Assert.Equal(0, localTime.Seconds);
-            Assert.Equal(0, localTime.Milliseconds);
+            Assert.Equal(2, localTime.Hour);
+            Assert.Equal(4, localTime.Minute);
+            Assert.Equal(0, localTime.Second);
+            Assert.Equal(0, localTime.Millisecond);
 
             localTime = new LocalTime(2, 4, 8);
 
-            Assert.Equal(2, localTime.Hours);
-            Assert.Equal(4, localTime.Minutes);
-            Assert.Equal(8, localTime.Seconds);
-            Assert.Equal(0, localTime.Milliseconds);
+            Assert.Equal(2, localTime.Hour);
+            Assert.Equal(4, localTime.Minute);
+            Assert.Equal(8, localTime.Second);
+            Assert.Equal(0, localTime.Millisecond);
 
             localTime = new LocalTime(2, 4, 8, 16);
 
-            Assert.Equal(2, localTime.Hours);
-            Assert.Equal(4, localTime.Minutes);
-            Assert.Equal(8, localTime.Seconds);
-            Assert.Equal(16, localTime.Milliseconds);
+            Assert.Equal(2, localTime.Hour);
+            Assert.Equal(4, localTime.Minute);
+            Assert.Equal(8, localTime.Second);
+            Assert.Equal(16, localTime.Millisecond);
 
             localTime = new LocalTime(new DateTime(2019, 10, 17, 21, 15, 32, 512));
 
-            Assert.Equal(21, localTime.Hours);
-            Assert.Equal(15, localTime.Minutes);
-            Assert.Equal(32, localTime.Seconds);
-            Assert.Equal(512, localTime.Milliseconds);
+            Assert.Equal(21, localTime.Hour);
+            Assert.Equal(15, localTime.Minute);
+            Assert.Equal(32, localTime.Second);
+            Assert.Equal(512, localTime.Millisecond);
         }
 
         [Fact]
-        public void Test_CreateLocalTime_ArgumentException()
+        public void Test_CreateLocalTime_ArgumentOutOfRangeException()
         {
-            Assert.Throws<ArgumentException>(() => new LocalTime(24, 0));
-            Assert.Throws<ArgumentException>(() => new LocalTime(-1, 0));
-            Assert.Throws<ArgumentException>(() => new LocalTime(0, 60));
-            Assert.Throws<ArgumentException>(() => new LocalTime(0, -1));
-            Assert.Throws<ArgumentException>(() => new LocalTime(0, 0, 60));
-            Assert.Throws<ArgumentException>(() => new LocalTime(0, 0, -1));
-            Assert.Throws<ArgumentException>(() => new LocalTime(0, 0, 0, 1000));
-            Assert.Throws<ArgumentException>(() => new LocalTime(0, 0, 0, -1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LocalTime(24, 0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LocalTime(-1, 0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LocalTime(0, 60));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LocalTime(0, -1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LocalTime(0, 0, 60));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LocalTime(0, 0, -1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LocalTime(0, 0, 0, 1000));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LocalTime(0, 0, 0, -1));
         }
 
         [Fact]
@@ -62,10 +62,10 @@ namespace NuniToolbox.Test.Time
             LocalTime localTime = new LocalTime(2, 4, 8, 16);
             DateTime dateTime = localTime.ToDateTime();
 
-            Assert.Equal(localTime.Hours, dateTime.Hour);
-            Assert.Equal(localTime.Minutes, dateTime.Minute);
-            Assert.Equal(localTime.Seconds, dateTime.Second);
-            Assert.Equal(localTime.Milliseconds, dateTime.Millisecond);
+            Assert.Equal(localTime.Hour, dateTime.Hour);
+            Assert.Equal(localTime.Minute, dateTime.Minute);
+            Assert.Equal(localTime.Second, dateTime.Second);
+            Assert.Equal(localTime.Millisecond, dateTime.Millisecond);
         }
 
         [Fact]
@@ -73,10 +73,10 @@ namespace NuniToolbox.Test.Time
         {
             LocalTime localTime = LocalTime.Min;
 
-            Assert.Equal(0, localTime.Hours);
-            Assert.Equal(0, localTime.Minutes);
-            Assert.Equal(0, localTime.Seconds);
-            Assert.Equal(0, localTime.Milliseconds);
+            Assert.Equal(0, localTime.Hour);
+            Assert.Equal(0, localTime.Minute);
+            Assert.Equal(0, localTime.Second);
+            Assert.Equal(0, localTime.Millisecond);
         }
 
         [Fact]
@@ -84,10 +84,10 @@ namespace NuniToolbox.Test.Time
         {
             LocalTime localTime = LocalTime.Max;
 
-            Assert.Equal(23, localTime.Hours);
-            Assert.Equal(59, localTime.Minutes);
-            Assert.Equal(59, localTime.Seconds);
-            Assert.Equal(999, localTime.Milliseconds);
+            Assert.Equal(23, localTime.Hour);
+            Assert.Equal(59, localTime.Minute);
+            Assert.Equal(59, localTime.Second);
+            Assert.Equal(999, localTime.Millisecond);
         }
 
         [Fact]
@@ -108,12 +108,12 @@ namespace NuniToolbox.Test.Time
         }
 
         [Fact]
-        public void Test_WithHours_ArgumentException()
+        public void Test_WithHours_ArgumentOutOfRangeException()
         {
             LocalTime localTime = new LocalTime(2, 4);
 
-            Assert.Throws<ArgumentException>(() => localTime.WithHours(64));
-            Assert.Throws<ArgumentException>(() => localTime.WithHours(-2));
+            Assert.Throws<ArgumentOutOfRangeException>(() => localTime.WithHours(64));
+            Assert.Throws<ArgumentOutOfRangeException>(() => localTime.WithHours(-2));
         }
 
         [Fact]
@@ -126,12 +126,12 @@ namespace NuniToolbox.Test.Time
         }
 
         [Fact]
-        public void Test_WithMinutes_ArgumentException()
+        public void Test_WithMinutes_ArgumentOutOfRangeException()
         {
             LocalTime localTime = new LocalTime(2, 4);
 
-            Assert.Throws<ArgumentException>(() => localTime.WithMinutes(64));
-            Assert.Throws<ArgumentException>(() => localTime.WithMinutes(-2));
+            Assert.Throws<ArgumentOutOfRangeException>(() => localTime.WithMinutes(64));
+            Assert.Throws<ArgumentOutOfRangeException>(() => localTime.WithMinutes(-2));
         }
 
         [Fact]
@@ -144,12 +144,12 @@ namespace NuniToolbox.Test.Time
         }
 
         [Fact]
-        public void Test_WithSeconds_ArgumentException()
+        public void Test_WithSeconds_ArgumentOutOfRangeException()
         {
             LocalTime localTime = new LocalTime(2, 4, 8);
 
-            Assert.Throws<ArgumentException>(() => localTime.WithSeconds(64));
-            Assert.Throws<ArgumentException>(() => localTime.WithSeconds(-2));
+            Assert.Throws<ArgumentOutOfRangeException>(() => localTime.WithSeconds(64));
+            Assert.Throws<ArgumentOutOfRangeException>(() => localTime.WithSeconds(-2));
         }
 
         [Fact]
@@ -162,12 +162,12 @@ namespace NuniToolbox.Test.Time
         }
 
         [Fact]
-        public void Test_WithMilliseconds_ArgumentException()
+        public void Test_WithMilliseconds_ArgumentOutOfRangeException()
         {
             LocalTime localTime = new LocalTime(2, 4, 8, 16);
 
-            Assert.Throws<ArgumentException>(() => localTime.WithSeconds(1024));
-            Assert.Throws<ArgumentException>(() => localTime.WithSeconds(-2));
+            Assert.Throws<ArgumentOutOfRangeException>(() => localTime.WithSeconds(1024));
+            Assert.Throws<ArgumentOutOfRangeException>(() => localTime.WithSeconds(-2));
         }
 
         [Fact]
@@ -349,6 +349,16 @@ namespace NuniToolbox.Test.Time
         }
 
         [Fact]
+        public void Test_AtDate()
+        {
+            LocalDate localDate = new LocalDate(2019, Month.November, 5);
+            LocalTime localTime = new LocalTime(20, 47, 32, 512);
+            DateTime expected = new DateTime(2019, 11, 5, 20, 47, 32, 512);
+
+            Assert.Equal(expected, localTime.AtDate(localDate));
+        }
+
+        [Fact]
         public void Test_ToIsoString()
         {
             LocalTime localTime = new LocalTime(2, 4, 8, 512);
@@ -448,7 +458,7 @@ namespace NuniToolbox.Test.Time
         }
 
         [Fact]
-        public void Test_LessThan_True()
+        public void Test_LessOrEqual_True()
         {
             Assert.True(new LocalTime(2, 4) <= new LocalTime(3, 4));
             Assert.True(new LocalTime(3, 2) <= new LocalTime(3, 4));
@@ -458,7 +468,7 @@ namespace NuniToolbox.Test.Time
         }
 
         [Fact]
-        public void Test_LessThan_False()
+        public void Test_LessOrEqual_False()
         {
             Assert.False(new LocalTime(3, 4) <= new LocalTime(2, 4));
             Assert.False(new LocalTime(3, 4) <= new LocalTime(3, 2));
@@ -486,7 +496,7 @@ namespace NuniToolbox.Test.Time
         }
 
         [Fact]
-        public void Test_GreateThan_True()
+        public void Test_GreaterOrEqual_True()
         {
             Assert.True(new LocalTime(3, 4) >= new LocalTime(2, 4));
             Assert.True(new LocalTime(3, 4) >= new LocalTime(3, 2));
@@ -496,7 +506,7 @@ namespace NuniToolbox.Test.Time
         }
 
         [Fact]
-        public void Test_GreaterThan_False()
+        public void Test_GreaterOrEqual_False()
         {
             Assert.False(new LocalTime(2, 4) >= new LocalTime(3, 4));
             Assert.False(new LocalTime(3, 2) >= new LocalTime(3, 4));
