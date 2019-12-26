@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500">
+        <link rel="stylesheet" href="https://unpkg.com/material-components-web@4.0.0/dist/material-components-web.min.css" />
+
+        <link rel="stylesheet" href="css/theme.css" />
+        <link rel="stylesheet" href="css/style.css" />
+
+        <title>NuniToolbox</title>
+    </head>
+    <body class="mdc-typography">
+        <div id="root">
+            <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
+                <div class="mdc-top-app-bar__row">
+                    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                        <span class="mdc-top-app-bar__title">NuniToolbox</span>
+                    </section>
+                    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+                        <a href="https://github.com/spiegelp/NuniToolbox" class="mdc-top-app-bar__action-item" aria-label="GitHub" alt="GitHub" target="_blank">
+                            <img class="nav-github-image" src="images/GitHub-Mark-Light-120px-plus.png" />
+                        </a>
+                    </section>
+                </div>
+            </header>
+
+            <main class="mdc-top-app-bar--fixed-adjust">
+                <div id="content" class="content">
+                    <h1>NuniToolbox</h1>
+                    <div class="icon-intro-flex-container">
+                        <div class="icon-flex-item">
+                            <img class="library-icon" src="https://raw.githubusercontent.com/spiegelp/NuniToolbox/master/icon/icon.png" alt="NuniToolbox icon" />
+                        </div>
+                        <div class="intro-flex-item">
+                            <p>
+                                NuniToolbox is a collection of common functions for the lazy programmer.
+                            </p>
+                        </div>
+                    </div>
+                    <h2>APIs</h2>
+                    <p>
+                        <h3>NuniToolbox</h3>
+                        <ul>
+                            <li>
+                                Collections
+                                <ul>
+                                    <li>
+                                        Extension methods on <code>IEnumerable</code> and <code>ICollection</code> for iterating, grouping, sorting, shuffling and adding items
+                                    </li>
+                                    <li>
+                                        <code>ExtendedObservableCollection</code> class for optimized adding of many items or replacing all items with only one changed event at the end of the operation
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Enum
+                                <ul>
+                                    <li>
+                                        Support for translating enum values into display strings
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Model
+                                <ul>
+                                    <li>
+                                        Base classes for model objects
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Time
+                                <ul>
+                                    <li>
+                                        Different classes for date and time only
+                                    </li>
+                                    <li>
+                                        Helper methods for weekdays, months and years
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+                    <h2>License</h2>
+                    <p>
+                        NuniToolbox is licensed under the <a href="https://github.com/spiegelp/NuniToolbox/blob/master/LICENSE" target="_blank">MIT license</a>.
+                    </p>
+                </div>
+
+                <div id="footer">
+                    <div class="content">
+                        Made with ♥ by Philipp Spiegel - Code licensed under the <a href="https://github.com/spiegelp/NuniToolbox/blob/master/LICENSE" target="_blank">MIT license</a>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script type="text/javascript" src="https://unpkg.com/material-components-web@4.0.0/dist/material-components-web.min.js"></script>
+    </body>
+</html>

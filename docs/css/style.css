@@ -1,0 +1,78 @@
+﻿body {
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0;
+}
+
+code {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 90%;
+}
+
+.content {
+    margin: 0 auto;
+    padding: 16px;
+    max-width: 1024px;
+}
+
+#footer {
+    background-color: #212121;
+    color: #757575;
+    padding: 16px 0px;
+    text-align: center;
+}
+
+#footer a {
+    color: #757575;
+    text-decoration: underline;
+}
+
+.library-icon {
+    width: 128px;
+}
+
+.nav-github-image {
+    width: 24px;
+}
+
+.icon-intro-flex-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.icon-flex-item {
+    order: 0;
+    flex: 0 0 auto;
+}
+
+.intro-flex-item {
+    order: 1;
+    flex: 1 1 auto;
+    padding-left: 16px;
+}
+
+.intro-flex-item p {
+    font-size: 18px;
+}
+
+@media (max-width: 512px) {
+    .icon-intro-flex-container {
+        flex-direction: column;
+    }
+
+    .icon-flex-item {
+        flex: 1 1 auto;
+    }
+
+    .intro-flex-item {
+        flex: 1 1 auto;
+        padding-left: 0;
+    }
+
+    .intro-flex-item p {
+        text-align: center;
+    }
+}
