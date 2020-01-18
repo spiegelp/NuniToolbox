@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuniToolbox.Test", "NuniToo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuniToolbox.Ui", "NuniToolbox.Ui\NuniToolbox.Ui.csproj", "{DA534666-E53E-4BA9-BDD1-3CBC69F70075}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuniToolbox.Ui.Test", "NuniToolbox.Ui.Test\NuniToolbox.Ui.Test.csproj", "{EBA329E4-2ED6-438C-8758-86447E0007C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DA534666-E53E-4BA9-BDD1-3CBC69F70075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA534666-E53E-4BA9-BDD1-3CBC69F70075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA534666-E53E-4BA9-BDD1-3CBC69F70075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBA329E4-2ED6-438C-8758-86447E0007C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBA329E4-2ED6-438C-8758-86447E0007C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBA329E4-2ED6-438C-8758-86447E0007C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBA329E4-2ED6-438C-8758-86447E0007C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
