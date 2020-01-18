@@ -6,7 +6,7 @@
     <Authors>Philipp Spiegel</Authors>
     <Company />
     <Description>NuniToolbox is a collection of common functions for the lazy programmer</Description>
-    <Copyright>Copyright (c) 2019 Philipp Spiegel</Copyright>
+    <Copyright>Copyright (c) 2019-2020 Philipp Spiegel</Copyright>
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/spiegelp/NuniToolbox</RepositoryUrl>

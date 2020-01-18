@@ -1,4 +1,4 @@
-# NuniToolbox
+# NuniToolbox (.NET Universal Toolbox)
 <p align="center">
   <img src="https://raw.githubusercontent.com/spiegelp/NuniToolbox/master/icon/icon.png" alt="NuniToolbox icon" width="128px" />
 </p>
