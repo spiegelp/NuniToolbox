@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net45</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <Version>0.1.0</Version>
+    <Authors>Philipp Spiegel</Authors>
+    <Company>Philipp Spiegel</Company>
+    <Copyright>Copyright (c) 2020 Philipp Spiegel</Copyright>
+    <PackageProjectUrl>https://spiegelp.github.io/NuniToolbox</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/spiegelp/NuniToolbox</RepositoryUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl />
+    <Description>NuniToolbox.Ui is a collection of common user interface and WPF functions for the lazy programmer</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+    <DefineConstants>NETCOREAPP31</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
+    <DefineConstants>NET45</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\icon\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

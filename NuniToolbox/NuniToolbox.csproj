@@ -4,13 +4,13 @@
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <Version>0.1.0</Version>
     <Authors>Philipp Spiegel</Authors>
-    <Company />
+    <Company>Philipp Spiegel</Company>
     <Description>NuniToolbox is a collection of common functions for the lazy programmer</Description>
     <Copyright>Copyright (c) 2019-2020 Philipp Spiegel</Copyright>
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/spiegelp/NuniToolbox</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/spiegelp/NuniToolbox</PackageProjectUrl>
+    <PackageProjectUrl>https://spiegelp.github.io/NuniToolbox</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">

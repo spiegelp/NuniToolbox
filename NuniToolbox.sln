@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuniToolbox", "NuniToolbox\NuniToolbox.csproj", "{82AEC677-69CC-4744-AC67-E3AFCBF30FF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuniToolbox", "NuniToolbox\NuniToolbox.csproj", "{82AEC677-69CC-4744-AC67-E3AFCBF30FF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuniToolbox.Test", "NuniToolbox.Test\NuniToolbox.Test.csproj", "{F5DD7F33-EFEF-4E50-A723-DE650510F317}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuniToolbox.Test", "NuniToolbox.Test\NuniToolbox.Test.csproj", "{F5DD7F33-EFEF-4E50-A723-DE650510F317}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuniToolbox.Ui", "NuniToolbox.Ui\NuniToolbox.Ui.csproj", "{DA534666-E53E-4BA9-BDD1-3CBC69F70075}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F5DD7F33-EFEF-4E50-A723-DE650510F317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5DD7F33-EFEF-4E50-A723-DE650510F317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5DD7F33-EFEF-4E50-A723-DE650510F317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA534666-E53E-4BA9-BDD1-3CBC69F70075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA534666-E53E-4BA9-BDD1-3CBC69F70075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA534666-E53E-4BA9-BDD1-3CBC69F70075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA534666-E53E-4BA9-BDD1-3CBC69F70075}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
