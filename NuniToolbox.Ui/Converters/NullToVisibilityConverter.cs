@@ -10,7 +10,7 @@ namespace NuniToolbox.Ui.Converters
     /// <summary>
     /// Converts a null value to a <see cref="Visibility" />.
     /// </summary>
-    public class NullToVisibilityConverter
+    public class NullToVisibilityConverter : IValueConverter
     {
         /// <summary>
         /// The visibility value for a null value.
