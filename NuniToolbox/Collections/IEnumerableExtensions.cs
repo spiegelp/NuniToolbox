@@ -176,6 +176,7 @@ namespace NuniToolbox.Collections
 
         /// <summary>
         /// Returns a shuffled list using Durstenfeld's version of the Fisher-Yates shuffle.
+        /// Attention: The used random number generator is not suited for cryptograhpic or any other security sensible code.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
@@ -185,13 +186,16 @@ namespace NuniToolbox.Collections
             return enumerable.Shuffle(new Random());
         }
 
+
         /// <summary>
         /// Returns a shuffled list using Durstenfeld's version of the Fisher-Yates shuffle.
+        /// Attention: The used random number generator is not suited for cryptograhpic or any other security sensible code.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <param name="random"></param>
         /// <returns></returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Security", "SCS0005:Weak random generator", Justification = "A strong (an thus usually slower) random number generator is not necessary for sorting a list")]
         public static List<T> Shuffle<T>(this IEnumerable<T> enumerable, Random random)
         {
             List<T> list = enumerable.ToList();

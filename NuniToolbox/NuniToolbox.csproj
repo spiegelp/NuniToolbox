@@ -32,4 +32,11 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SecurityCodeScan" Version="3.4.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>
