@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 
 namespace NuniToolbox.Collections
@@ -35,17 +36,25 @@ namespace NuniToolbox.Collections
         /// <param name="items"></param>
         public void AddRange(IEnumerable<T> items)
         {
+            if (items != null && items.Any())
+            {
+                AddRangeInternal(items);
+            }
+        }
+
+        private void AddRangeInternal(IEnumerable<T> items)
+        {
             if (items != null)
             {
                 foreach (T item in items)
                 {
                     Items.Add(item);
                 }
-
-                OnPropertyChanged(new PropertyChangedEventArgs(nameof(Count)));
-                OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
+
+            OnPropertyChanged(new PropertyChangedEventArgs(nameof(Count)));
+            OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
         /// <summary>
@@ -54,8 +63,11 @@ namespace NuniToolbox.Collections
         /// <param name="items"></param>
         public void ReplaceWith(IEnumerable<T> items)
         {
-            Items.Clear();
-            AddRange(items);
+            if (Items.Any() || (items != null && items.Any()))
+            {
+                Items.Clear();
+                AddRangeInternal(items);
+            }
         }
     }
 }

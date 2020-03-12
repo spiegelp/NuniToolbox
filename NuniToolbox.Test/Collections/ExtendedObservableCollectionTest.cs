@@ -14,10 +14,14 @@ namespace NuniToolbox.Test.Collections
         [Fact]
         public void Test_ReplaceWith_Ok()
         {
+            int eventCount = 0;
+
             IEnumerable<int> initialNumbers = Enumerable.Range(1, 4);
             IEnumerable<int> newNumbers = Enumerable.Range(16, 32);
 
             ExtendedObservableCollection<int> observableCollection = new ExtendedObservableCollection<int>(initialNumbers);
+
+            observableCollection.CollectionChanged += (sender, args) => eventCount++;
 
             observableCollection.ReplaceWith(newNumbers);
 
@@ -27,6 +31,24 @@ namespace NuniToolbox.Test.Collections
             {
                 Assert.Contains(observableCollection, numberItem => numberItem == number);
             }
+
+            Assert.Equal(1, eventCount);
+        }
+        [Fact]
+        public void Test_ReplaceWith_EmptyItemsArgument_Ok()
+        {
+            int eventCount = 0;
+
+            ExtendedObservableCollection<int> observableCollection = new ExtendedObservableCollection<int>();
+
+            observableCollection.CollectionChanged += (sender, args) => eventCount++;
+
+            observableCollection.ReplaceWith(null);
+            observableCollection.ReplaceWith(new List<int>());
+            observableCollection.ReplaceWith(new int[0]);
+
+            Assert.Empty(observableCollection);
+            Assert.Equal(0, eventCount);
         }
 
         [Fact]
@@ -56,6 +78,25 @@ namespace NuniToolbox.Test.Collections
             }
 
             Assert.Equal(1, eventCount);
+        }
+
+        [Fact]
+        public void Test_AddRange_EmptyItemsArgument_Ok()
+        {
+            int eventCount = 0;
+
+            IEnumerable<int> newNumbers = Enumerable.Range(16, 32);
+
+            ExtendedObservableCollection<int> observableCollection = new ExtendedObservableCollection<int>();
+
+            observableCollection.CollectionChanged += (sender, args) => eventCount++;
+
+            observableCollection.AddRange(null);
+            observableCollection.AddRange(new List<int>());
+            observableCollection.AddRange(new int[0]);
+
+            Assert.Empty(observableCollection);
+            Assert.Equal(0, eventCount);
         }
 
         [Fact]
