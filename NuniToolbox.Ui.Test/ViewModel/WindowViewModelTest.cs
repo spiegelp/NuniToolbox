@@ -8,7 +8,7 @@ using NuniToolbox.Ui.ViewModel;
 
 namespace NuniToolbox.Ui.Test.ViewModel
 {
-    public class WindowViewModelObjectTest
+    public class WindowViewModelTest
     {
         [Fact]
         public void Test_CurrentViewModel_Disposing_Ok()
@@ -72,6 +72,28 @@ namespace NuniToolbox.Ui.Test.ViewModel
             Assert.Equal(newViewModel, windowViewModel.CurrentViewModel);
             Assert.False(oldViewModel.Disposed);
             Assert.False(newViewModel.Disposed);
+        }
+
+        [Fact]
+        public void Test_SetCurrentViewModel_NoChange_Ok()
+        {
+            MyViewModel oldViewModel = new MyViewModel();
+            WindowViewModel windowViewModel = new WindowViewModel { CurrentViewModel = oldViewModel };
+
+            string propertyName = null;
+
+            windowViewModel.PropertyChanged += (sender, args) => propertyName = args.PropertyName;
+
+            Assert.Equal(oldViewModel, windowViewModel.CurrentViewModel);
+
+            MyViewModel newViewModel = oldViewModel;
+            windowViewModel.SetCurrentViewModel(newViewModel, false);
+
+            Assert.Equal(newViewModel, windowViewModel.CurrentViewModel);
+            Assert.Equal(oldViewModel, windowViewModel.CurrentViewModel);
+            Assert.False(oldViewModel.Disposed);
+            Assert.False(newViewModel.Disposed);
+            Assert.Null(propertyName);
         }
 
         public class MyViewModel : ViewModelObject

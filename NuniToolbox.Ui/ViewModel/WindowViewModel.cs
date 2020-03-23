@@ -65,14 +65,17 @@ namespace NuniToolbox.Ui.ViewModel
         /// <param name="disposeOldViewModel">True to dispose the old view model</param>
         public void SetCurrentViewModel(ViewModelObject newViewModel, bool disposeOldViewModel)
         {
-            if (disposeOldViewModel && m_currentViewModel != null)
+            if (newViewModel != m_currentViewModel)
             {
-                m_currentViewModel.Dispose();
+                if (disposeOldViewModel && m_currentViewModel != null)
+                {
+                    m_currentViewModel.Dispose();
+                }
+
+                m_currentViewModel = newViewModel;
+
+                OnPropertyChanged(nameof(CurrentViewModel));
             }
-
-            m_currentViewModel = newViewModel;
-
-            OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
 }
