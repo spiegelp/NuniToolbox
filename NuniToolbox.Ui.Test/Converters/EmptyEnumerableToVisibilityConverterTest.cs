@@ -10,7 +10,7 @@ using NuniToolbox.Ui.Converters;
 
 namespace NuniToolbox.Ui.Test.Converters
 {
-    public class EmptyEnumerableVisibilityConverterTest
+    public class EmptyEnumerableToVisibilityConverterTest
     {
         [Theory]
         [InlineData(Visibility.Collapsed, Visibility.Visible, null, Visibility.Collapsed)]
@@ -21,7 +21,7 @@ namespace NuniToolbox.Ui.Test.Converters
         [InlineData(Visibility.Visible, Visibility.Collapsed, 4, Visibility.Visible)]
         public void Test_Convert_Ok(Visibility emptyValue, Visibility notEmptyValue, object value, Visibility expected)
         {
-            EmptyEnumerableVisibilityConverter converter = new EmptyEnumerableVisibilityConverter(emptyValue, notEmptyValue);
+            EmptyEnumerableToVisibilityConverter converter = new EmptyEnumerableToVisibilityConverter(emptyValue, notEmptyValue);
 
             Assert.Equal(expected, converter.Convert(value, typeof(bool), null, CultureInfo.InvariantCulture));
         }
