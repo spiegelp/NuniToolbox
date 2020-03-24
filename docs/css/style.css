@@ -58,6 +58,17 @@ code {
     font-size: 18px;
 }
 
+.tab-control-content {
+    margin-top: 16px;
+    display: none;
+    visibility: collapse;
+}
+
+.tab-control-content--active {
+    display: block;
+    visibility: visible;
+}
+
 @media (max-width: 512px) {
     .icon-intro-flex-container {
         flex-direction: column;

@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.css" />
+
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>NuniToolbox (.NET Universal Toolbox)</title>
+</head>
+<body class="mdc-typography">
+    <div id="root">
+        <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
+            <div class="mdc-top-app-bar__row">
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                    <span class="mdc-top-app-bar__title">NuniToolbox</span>
+                </section>
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+                    <a href="index.html" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Home" alt="Home">home</a>
+                    <a href="releasenotes.html" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Release notes" alt="Release notes">list</a>
+                    <a href="https://github.com/spiegelp/NuniToolbox" class="mdc-icon-button mdc-top-app-bar__action-item--unbounded" aria-label="GitHub" alt="GitHub" target="_blank">
+                        <img class="nav-github-image" src="images/GitHub-Mark-Light-120px-plus.png" />
+                    </a>
+                </section>
+            </div>
+        </header>
+
+        <main class="mdc-top-app-bar--fixed-adjust">
+            <div id="content" class="content">
+                <h1>Release notes</h1>
+                <div class="mdc-tab-bar" role="tablist">
+                    <div class="mdc-tab-scroller">
+                        <div class="mdc-tab-scroller__scroll-area">
+                            <div class="mdc-tab-scroller__scroll-content">
+                                <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+                                    <span class="mdc-tab__content">
+                                        <span class="mdc-tab__text-label">NuniToolbox</span>
+                                    </span>
+                                    <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                                        <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                    </span>
+                                    <span class="mdc-tab__ripple"></span>
+                                </button>
+                                <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="false" tabindex="-1">
+                                    <span class="mdc-tab__content">
+                                        <span class="mdc-tab__text-label">NuniToolbox.Ui</span>
+                                    </span>
+                                    <span class="mdc-tab-indicator">
+                                        <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                    </span>
+                                    <span class="mdc-tab__ripple"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-control-content tab-control-content--active">
+                    <h2>v1.0.0 (upcoming release)</h2>
+                    <h3>Features</h3>
+                    <ul>
+                        <li>
+                            Base classes for model objects
+                        </li>
+                        <li>
+                            Extension methods for <code>IEnumerable</code>
+                        </li>
+                        <li>
+                            <code>Foreach</code>
+                        </li>
+                        <li>
+                            <code>GroupByToDictionary</code>
+                        </li>
+                        <li>
+                            <code>Sorted</code>
+                        </li>
+                        <li>
+                            <code>ToSet</code>
+                        </li>
+                        <li>
+                            Extension methods for <code>ICollection</code>
+                        </li>
+                        <li>
+                            <code>AddAll</code>
+                        </li>
+                        <li>
+                            Optimized version of <code>ObservableCollection</code> for bulk operations
+                        </li>
+                        <li>
+                            Translation of <code>enum</code> into display strings
+                        </li>
+                        <li>
+                            Extension methods for shallow and deep copy
+                        </li>
+                        <li>
+                            Different classes for date and time only
+                        </li>
+                        <li>
+                            Helper methods for weekdays, months and years
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-control-content">
+                    <h2>v1.0.0 (upcoming release)</h2>
+                    <h3>Features</h3>
+                    <ul>
+                        <li>
+                            Implementation of a simple command taking delegates for the <code>Execute</code> and <code>CanExecute</code> logic
+                        </li>
+                        <li>
+                            Base class for view model objects
+                        </li>
+                        <li>
+                            Ready to use view model for selections
+                        </li>
+                        <li>
+                            Special view model for window content
+                        </li>
+                        <li>
+                            Converters
+                            <ul>
+                                <li>
+                                    <code>BoolAndConverter</code>
+                                </li>
+                                <li>
+                                    <code>BoolAndToVisibilityConverter</code>
+                                </li>
+                                <li>
+                                    <code>BoolNotConverter</code>
+                                </li>
+                                <li>
+                                    <code>BoolOrConverter</code>
+                                </li>
+                                <li>
+                                    <code>BoolOrToVisibilityConverter</code>
+                                </li>
+                                <li>
+                                    <code>BoolToVisibilityConverter</code>
+                                </li>
+                                <li>
+                                    <code>ByteArrayToBitmapImageConverter</code>
+                                </li>
+                                <li>
+                                    <code>DateTimeOffsetToDateTimeConverter</code>
+                                </li>
+                                <li>
+                                    <code>EmptyCollectionToVisibilityConverter</code>
+                                </li>
+                                <li>
+                                    <code>EmptyEnumerableToBoolConverter</code>
+                                </li>
+                                <li>
+                                    <code>EmptyEnumerableToVisibilityConverter</code>
+                                </li>
+                                <li>
+                                    <code>IndexPlusOneConverter</code>
+                                </li>
+                                <li>
+                                    <code>NullToBoolConverter</code>
+                                </li>
+                                <li>
+                                    <code>NullToVisibilityConverter</code>
+                                </li>
+                                <li>
+                                    <code>UpperCaseConverter</code>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="footer">
+                <div class="content">
+                    Made with ♥ by Philipp Spiegel - Code licensed under the <a href="https://github.com/spiegelp/NuniToolbox/blob/master/LICENSE" target="_blank">MIT license</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="text/javascript" src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.js"></script>
+
+    <script type="text/javascript">
+        const tabControl = new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
+        let contentElements = document.querySelectorAll('.tab-control-content');
+
+        tabControl.listen('MDCTabBar:activated', function (event) {
+            document.querySelector('.tab-control-content--active').classList.remove('tab-control-content--active');
+            contentElements[event.detail.index].classList.add('tab-control-content--active');
+        });
+    </script>
+</body>
+</html>

@@ -20,6 +20,8 @@
 #### Features
 * Implementation of a simple command taking delegates for the `Execute` and `CanExecute` logic
 * Base class for view model objects
+* Ready to use view model for selections
+* Special view model for window content
 * Converters
   * `BoolAndConverter`
   * `BoolAndToVisibilityConverter`
