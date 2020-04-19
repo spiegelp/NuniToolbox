@@ -12,6 +12,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl />
     <Description>NuniToolbox.Ui is a collection of common user interface and WPF functions for the lazy programmer</Description>
+    <PackageTags>Command Converter ViewModel</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">

@@ -11,6 +11,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/spiegelp/NuniToolbox</RepositoryUrl>
     <PackageProjectUrl>https://spiegelp.github.io/NuniToolbox</PackageProjectUrl>
+    <PackageTags>TimeAPI Enum Collections</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
