@@ -2,16 +2,20 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
-    <Version>0.1.0</Version>
+    <Version>1.0.0-a01</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageId>NuniToolbox</PackageId>
     <Authors>Philipp Spiegel</Authors>
     <Company>Philipp Spiegel</Company>
     <Description>NuniToolbox is a collection of common functions for the lazy programmer</Description>
     <Copyright>Copyright (c) 2019-2020 Philipp Spiegel</Copyright>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageIconUrl />
     <RepositoryUrl>https://github.com/spiegelp/NuniToolbox</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://spiegelp.github.io/NuniToolbox</PackageProjectUrl>
-    <PackageTags>TimeAPI Enum Collections</PackageTags>
+    <PackageTags>TimeAPI Enum Collections ExtensionMethod</PackageTags>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
@@ -26,8 +30,24 @@
     <DefineConstants>NET45</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NuniToolbox.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NuniToolbox.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="..\icon\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="$(SolutionDir)additionalPackageFiles\License.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

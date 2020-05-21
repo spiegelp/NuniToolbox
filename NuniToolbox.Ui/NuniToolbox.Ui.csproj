@@ -3,16 +3,20 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;net45</TargetFrameworks>
     <UseWPF>true</UseWPF>
-    <Version>0.1.0</Version>
+    <Version>1.0.0-a01</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageId>NuniToolbox.Ui</PackageId>
     <Authors>Philipp Spiegel</Authors>
     <Company>Philipp Spiegel</Company>
-    <Copyright>Copyright (c) 2020 Philipp Spiegel</Copyright>
-    <PackageProjectUrl>https://spiegelp.github.io/NuniToolbox</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/spiegelp/NuniToolbox</RepositoryUrl>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageIconUrl />
     <Description>NuniToolbox.Ui is a collection of common user interface and WPF functions for the lazy programmer</Description>
-    <PackageTags>Command Converter ViewModel</PackageTags>
+    <Copyright>Copyright (c) 2020 Philipp Spiegel</Copyright>
+    <RepositoryUrl>https://github.com/spiegelp/NuniToolbox</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://spiegelp.github.io/NuniToolbox</PackageProjectUrl>
+    <PackageTags>Command Converter ValueConverter ViewModel</PackageTags>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
@@ -23,8 +27,24 @@
     <DefineConstants>NET45</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NuniToolbox.Ui.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NuniToolbox.Ui.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="..\icon\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="$(SolutionDir)additionalPackageFiles\License.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
