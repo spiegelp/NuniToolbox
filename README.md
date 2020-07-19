@@ -6,9 +6,9 @@
   NuniToolbox is a collection of common functions for the lazy programmer.
 </p>
 <p align="center">
-  [![Build status](https://dev.azure.com/spiegelp/NuniToolbox/_apis/build/status/NuniToolbox-all)](https://dev.azure.com/spiegelp/NuniToolbox/_build/latest?definitionId=3)
-  [![NuGet Status](https://img.shields.io/nuget/v/NuniToolbox.svg?style=flat&label=NuniToolbox&logo=nuget&color=blue)](https://www.nuget.org/packages/NuniToolbox/)
-  [![NuGet Status](https://img.shields.io/nuget/v/NuniToolbox.Ui.svg?style=flat&label=NuniToolbox.Ui&logo=nuget&color=blue)](https://www.nuget.org/packages/NuniToolbox.Ui/)
+  <a href="https://dev.azure.com/spiegelp/NuniToolbox/_build/latest?definitionId=3"><img src="https://dev.azure.com/spiegelp/NuniToolbox/_apis/build/status/NuniToolbox-all" /></a>
+  <a href="https://www.nuget.org/packages/NuniToolbox/" target="_blank"><img src="https://img.shields.io/nuget/v/NuniToolbox.svg?style=flat&label=NuniToolbox&logo=nuget&color=blue" /></a>
+  <a href="https://www.nuget.org/packages/NuniToolbox.Ui/" target="_blank"><img src="https://img.shields.io/nuget/v/NuniToolbox.Ui.svg?style=flat&label=NuniToolbox.Ui&logo=nuget&color=blue" /></a>
 </p>
 
 ## APIs
