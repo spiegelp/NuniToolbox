@@ -16,6 +16,8 @@
     <PackageTags>TimeAPI Enum Collections ExtensionMethod</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">

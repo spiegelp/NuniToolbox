@@ -17,6 +17,8 @@
     <PackageTags>Command Converter ValueConverter ViewModel</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
