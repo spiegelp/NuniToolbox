@@ -55,7 +55,7 @@ namespace NuniToolbox.Ui.Commands
     }
 
     /// <summary>
-    /// A read to use command implementation with a command parameter.
+    /// A ready to use command implementation with a command parameter.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class DelegateCommand<T> : BaseDelegateCommand
