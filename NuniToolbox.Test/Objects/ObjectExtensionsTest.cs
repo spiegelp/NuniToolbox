@@ -68,13 +68,24 @@ namespace NuniToolbox.Test.Objects
             Assert.Equal(person.Mother.HasPets, clonedPerson.Mother.HasPets);
         }
 
-        public class Person
+        public interface IPerson
+        {
+            string Name { get; set; }
+
+            int Age { get; set; }
+
+            IPerson Mother { get; set; }
+
+            bool? HasPets { get; set; }
+        }
+
+        public class Person : IPerson
         {
             public string Name { get; set; }
 
             public int Age { get; set; }
 
-            public Person Mother { get; set; }
+            public IPerson Mother { get; set; }
 
             public bool? HasPets { get; set; }
 

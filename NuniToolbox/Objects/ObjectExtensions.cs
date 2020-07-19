@@ -45,7 +45,14 @@ namespace NuniToolbox.Objects
         /// <returns></returns>
         public static T DeepCopy<T>(this T obj, IDictionary<string, ICollection<string>> excludedPropertiesByType = null) where T : new()
         {
-            return (T)DeepCopy(obj, obj.GetType(), excludedPropertiesByType);
+            if (obj != null)
+            {
+                return (T)DeepCopy(obj, obj.GetType(), excludedPropertiesByType);
+            }
+            else
+            {
+                return default;
+            }
         }
 
         private static object DeepCopy(object obj, Type type, IDictionary<string, ICollection<string>> excludedPropertiesByType)
@@ -76,8 +83,17 @@ namespace NuniToolbox.Objects
                         }
                         else
                         {
-                            object clonedProperty = DeepCopy(propertyInfo.GetValue(obj), propertyInfo.PropertyType, excludedPropertiesByType);
-                            propertyInfo.SetValue(clonedObj, clonedProperty);
+                            object propertyValue = propertyInfo.GetValue(obj);
+
+                            if (propertyValue != null)
+                            {
+                                object clonedProperty = DeepCopy(propertyValue, propertyValue.GetType(), excludedPropertiesByType);
+                                propertyInfo.SetValue(clonedObj, clonedProperty);
+                            }
+                            else
+                            {
+                                propertyInfo.SetValue(clonedObj, null);
+                            }
                         }
                     });
 
