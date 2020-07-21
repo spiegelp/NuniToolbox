@@ -1,6 +1,6 @@
 # Release notes
 ## NuniToolbox
-### v1.0.0 (upcoming release)
+### v1.0.0
 #### Features
 * Base classes for model objects
 * Extension methods for `IEnumerable`
@@ -16,7 +16,7 @@
 * Different classes for date and time only
 * Helper methods for weekdays, months and years
 ## NuniToolbox.Ui
-### v1.0.0 (upcoming release)
+### v1.0.0
 #### Features
 * Implementation of a simple command taking delegates for the `Execute` and `CanExecute` logic
 * Base class for view model objects

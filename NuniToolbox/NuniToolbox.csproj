@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
-    <Version>1.0.0-a01</Version>
+    <Version>1.0.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageId>NuniToolbox</PackageId>
@@ -13,7 +13,7 @@
     <RepositoryUrl>https://github.com/spiegelp/NuniToolbox</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://spiegelp.github.io/NuniToolbox</PackageProjectUrl>
-    <PackageTags>TimeAPI Enum Collections ExtensionMethod</PackageTags>
+    <PackageTags>TimeAPI Enum Collections ExtensionMethod Model</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
