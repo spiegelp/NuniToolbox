@@ -17,6 +17,8 @@
 * Collections
   * Extension methods on IEnumerable and ICollection for iterating, grouping, sorting, shuffling and adding items
   * `ExtendedObservableCollection` class for optimized adding of many items or replacing all items with only one changed event at the end of the operation
+* Cryptography
+  * Implementation of [RFC 5869 - HMAC-based Extract-and-Expand Key Derivation Function](https://tools.ietf.org/html/rfc5869)
 * Enum
   * Support for translating enum values into display strings
 * Model

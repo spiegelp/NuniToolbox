@@ -13,7 +13,7 @@
     <RepositoryUrl>https://github.com/spiegelp/NuniToolbox</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://spiegelp.github.io/NuniToolbox</PackageProjectUrl>
-    <PackageTags>TimeAPI Enum Collections ExtensionMethod Model</PackageTags>
+    <PackageTags>TimeAPI Enum Collections ExtensionMethod Model HKDF RFC-5869</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
