@@ -41,3 +41,6 @@
   * `NullToBoolConverter`
   * `NullToVisibilityConverter`
   * `UpperCaseConverter`
+### v1.1.0 (upcoming release)
+#### Features
+* .NET 5.0 support
