@@ -94,7 +94,7 @@ namespace NuniToolbox.Ui.ViewModel
         /// <param name="propertyName"></param>
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null && string.IsNullOrEmpty(propertyName) == false)
+            if (PropertyChanged is not null && !string.IsNullOrWhiteSpace(propertyName))
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }

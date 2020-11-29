@@ -126,7 +126,7 @@ namespace NuniToolbox.Enum
         {
             IDictionary<T, string> translations = GetTranslationsForType(translationType);
 
-            if (translations != null)
+            if (translations is not null)
             {
                 translations.TryGetValue(enumValue, out string translation);
 

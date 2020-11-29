@@ -42,9 +42,9 @@ namespace NuniToolbox.Ui.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null
-                    && ((value is ICollection && ((ICollection)value).Count > 0)
-                        || (value is Collection<object> && ((Collection<object>)value).Count > 0)))
+            if (value is not null
+                    && ((value is ICollection icollection && icollection.Count > 0)
+                        || (value is Collection<object> collection && collection.Count > 0)))
             {
                 return NotEmptyValue;
             }

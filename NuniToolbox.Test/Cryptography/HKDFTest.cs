@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 using Xunit;
-
-using NuniToolbox.Cryptography;
-using System.Security.Cryptography;
 
 namespace NuniToolbox.Test.Cryptography
 {
@@ -28,7 +26,7 @@ namespace NuniToolbox.Test.Cryptography
             byte[] ikm = ConvertHexStringToBytes(ikmStr);
             byte[] salt = ConvertHexStringToBytes(saltStr);
 
-            HKDF hkdf = new HKDF(() => new HMACSHA256());
+            NuniToolbox.Cryptography.HKDF hkdf = new NuniToolbox.Cryptography.HKDF(() => new HMACSHA256());
             byte[] prk = hkdf.Extract(ikm, salt);
 
             Assert.NotNull(prk);
@@ -53,7 +51,7 @@ namespace NuniToolbox.Test.Cryptography
             byte[] prk = ConvertHexStringToBytes(prkStr);
             byte[] info = ConvertHexStringToBytes(infoStr);
 
-            HKDF hkdf = new HKDF(() => new HMACSHA256());
+            NuniToolbox.Cryptography.HKDF hkdf = new NuniToolbox.Cryptography.HKDF(() => new HMACSHA256());
             byte[] okm = hkdf.Expand(prk ,info, length);
 
             Assert.NotNull(okm);
@@ -83,7 +81,7 @@ namespace NuniToolbox.Test.Cryptography
             byte[] salt = ConvertHexStringToBytes(saltStr);
             byte[] info = ConvertHexStringToBytes(infoStr);
 
-            HKDF hkdf = new HKDF(() => new HMACSHA256());
+            NuniToolbox.Cryptography.HKDF hkdf = new NuniToolbox.Cryptography.HKDF(() => new HMACSHA256());
             byte[] okm = hkdf.DeriveKey(ikm, salt, info, length);
 
             Assert.NotNull(okm);

@@ -36,7 +36,7 @@ namespace NuniToolbox.Collections
         /// <param name="items"></param>
         public void AddRange(IEnumerable<T> items)
         {
-            if (items != null && items.Any())
+            if (items is not null && items.Any())
             {
                 AddRangeInternal(items);
             }
@@ -44,7 +44,7 @@ namespace NuniToolbox.Collections
 
         private void AddRangeInternal(IEnumerable<T> items)
         {
-            if (items != null)
+            if (items is not null)
             {
                 foreach (T item in items)
                 {
@@ -63,7 +63,7 @@ namespace NuniToolbox.Collections
         /// <param name="items"></param>
         public void ReplaceWith(IEnumerable<T> items)
         {
-            if (Items.Any() || (items != null && items.Any()))
+            if (Items.Any() || (items is not null && items.Any()))
             {
                 Items.Clear();
                 AddRangeInternal(items);

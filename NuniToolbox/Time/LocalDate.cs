@@ -299,7 +299,7 @@ namespace NuniToolbox.Time
 
         public override bool Equals(object obj)
         {
-            if (obj != null && obj is LocalDate otherLocalDate)
+            if (obj is LocalDate otherLocalDate)
             {
                 return this == otherLocalDate;
             }

@@ -67,7 +67,7 @@ namespace NuniToolbox.Ui.ViewModel
         {
             if (newViewModel != m_currentViewModel)
             {
-                if (disposeOldViewModel && m_currentViewModel != null)
+                if (disposeOldViewModel && m_currentViewModel is not null)
                 {
                     m_currentViewModel.Dispose();
                 }

@@ -18,7 +18,7 @@ namespace NuniToolbox.Ui.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && value is string str)
+            if (value is string str)
             {
                 return str.ToUpper(culture).Replace("ß", "SS");
             }

@@ -130,7 +130,7 @@ namespace NuniToolbox.Enum
                     m_translationSourcesByType[enumType] = new Dictionary<string, object>();
                 }
 
-                string languageName = (translationSource.Language != null ? translationSource.Language.Name : CultureInfo.InvariantCulture.Name).ToLower();
+                string languageName = (translationSource.Language is not null ? translationSource.Language.Name : CultureInfo.InvariantCulture.Name).ToLower();
 
                 m_translationSourcesByType[enumType][languageName] = translationSource;
             }
@@ -138,7 +138,7 @@ namespace NuniToolbox.Enum
 
         private string[] SplitLanguageName(CultureInfo language)
         {
-            return SplitLanguageName(language != null ? language.Name : CultureInfo.InvariantCulture.Name);
+            return SplitLanguageName(language is not null ? language.Name : CultureInfo.InvariantCulture.Name);
         }
 
         private string[] SplitLanguageName(string languageName)

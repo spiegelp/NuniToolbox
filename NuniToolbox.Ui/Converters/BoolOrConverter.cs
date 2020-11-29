@@ -20,7 +20,7 @@ namespace NuniToolbox.Ui.Converters
         {
             bool result = false;
 
-            if (values != null)
+            if (values is not null)
             {
                 for (int i = 0; i < values.Length && !result; i++)
                 {

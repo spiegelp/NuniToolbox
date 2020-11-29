@@ -316,7 +316,7 @@ namespace NuniToolbox.Time
 
         public override bool Equals(object obj)
         {
-            if (obj != null && obj is LocalTime otherLocalTime)
+            if (obj is LocalTime otherLocalTime)
             {
                 return this == otherLocalTime;
             }

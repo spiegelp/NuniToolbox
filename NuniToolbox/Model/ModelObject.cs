@@ -27,7 +27,7 @@ namespace NuniToolbox.Model
         /// <param name="propertyName"></param>
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null && !string.IsNullOrWhiteSpace(propertyName))
+            if (PropertyChanged is not null && !string.IsNullOrWhiteSpace(propertyName))
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }

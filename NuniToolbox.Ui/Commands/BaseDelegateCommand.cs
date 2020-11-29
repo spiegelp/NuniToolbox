@@ -54,9 +54,9 @@ namespace NuniToolbox.Ui.Commands
         {
             EventHandler canExecuteChangedHandler = CanExecuteChanged;
 
-            if (canExecuteChangedHandler != null)
+            if (canExecuteChangedHandler is not null)
             {
-                if (m_synchronizationContext != null && m_synchronizationContext != SynchronizationContext.Current)
+                if (m_synchronizationContext is not null && m_synchronizationContext != SynchronizationContext.Current)
                 {
                     m_synchronizationContext.Post(x => canExecuteChangedHandler(this, EventArgs.Empty), null);
                 }

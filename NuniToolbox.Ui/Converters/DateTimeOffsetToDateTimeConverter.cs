@@ -21,7 +21,7 @@ namespace NuniToolbox.Ui.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && value is DateTimeOffset)
+            if (value is DateTimeOffset dateTimeOffset)
             {
                 /*
                 When you retrieve a DateTime value using the DateTimeOffset.LocalDateTime property, the property's get
@@ -33,7 +33,7 @@ namespace NuniToolbox.Ui.Converters
                 To convert UTC to local time, call the ToLocalTime method of the DateTime object whose time you want to convert.
                 */
 
-                return ((DateTimeOffset)value).LocalDateTime;
+                return dateTimeOffset.LocalDateTime;
             }
             else
             {
@@ -43,10 +43,10 @@ namespace NuniToolbox.Ui.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && value is DateTime)
+            if (value is DateTime dateTime)
             {
                 // local DateTime to a DateTime in UTC
-                DateTime dateTimeUtc = TimeZoneInfo.ConvertTimeToUtc((DateTime)value);
+                DateTime dateTimeUtc = TimeZoneInfo.ConvertTimeToUtc(dateTime);
 
                 // DateTime with local time to a DateTimeOffset with the same time and the corresponding offset
                 DateTimeOffset dateTimeOffsetUtc = dateTimeUtc;

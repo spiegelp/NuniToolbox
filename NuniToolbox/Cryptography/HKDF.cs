@@ -41,7 +41,7 @@ namespace NuniToolbox.Cryptography
             }
             finally
             {
-                if (prk != null)
+                if (prk is not null)
                 {
                     // don't keep the PRK in memory
                     Array.Clear(prk, 0, prk.Length);
@@ -57,17 +57,16 @@ namespace NuniToolbox.Cryptography
         /// <returns>The extracted pseudorandom key (PRK)</returns>
         public byte[] Extract(byte[] ikm, byte[] salt)
         {
-            using (HMAC hmac = m_hmacFactory.Invoke())
+            using HMAC hmac = m_hmacFactory.Invoke();
+
+            if (salt == null || salt.Length == 0)
             {
-                if (salt == null || salt.Length == 0)
-                {
-                    salt = new byte[hmac.HashSize / 8];
-                }
-
-                hmac.Key = salt;
-
-                return hmac.ComputeHash(ikm);
+                salt = new byte[hmac.HashSize / 8];
             }
+
+            hmac.Key = salt;
+
+            return hmac.ComputeHash(ikm);
         }
 
         /// <summary>
@@ -79,61 +78,60 @@ namespace NuniToolbox.Cryptography
         /// <returns>The expanded output keying material (OKM)</returns>
         public byte[] Expand(byte[] prk, byte[] info, int length)
         {
-            using (HMAC hmac = m_hmacFactory.Invoke())
+            using HMAC hmac = m_hmacFactory.Invoke();
+
+            if (prk == null || prk.Length == 0)
             {
-                if (prk == null || prk.Length == 0)
+                throw new ArgumentException($"{nameof(prk)} must not be null or empty", nameof(prk));
+            }
+
+            int hashLength = hmac.HashSize / 8;
+
+            if (length < 1 || length > 255 * hashLength)
+            {
+                throw new ArgumentException($"{nameof(length)} must be: 1 <= {nameof(length)} <= {255 * hashLength:0,000} (255 * hash length in bytes)", nameof(length));
+            }
+
+            if (info == null)
+            {
+                info = new byte[0];
+            }
+
+            byte[] lastT = new byte[0];
+
+            try
+            {
+                int n = (int)Math.Ceiling((double)length / hashLength);
+                byte[] finalKey = new byte[length];
+                int nPendingBytes = length;
+
+                hmac.Key = prk;
+
+                for (int i = 0; i < n && nPendingBytes > 0; i++)
                 {
-                    throw new ArgumentException($"{nameof(prk)} must not be null or empty", nameof(prk));
-                }
+                    byte[] input = PrepareExpandInput(lastT, info, i + 1);
 
-                int hashLength = hmac.HashSize / 8;
-
-                if (length < 1 || length > 255 * hashLength)
-                {
-                    throw new ArgumentException($"{nameof(length)} must be: 1 <= {nameof(length)} <= {255 * hashLength:0,000} (255 * hash length in bytes)", nameof(length));
-                }
-
-                if (info == null)
-                {
-                    info = new byte[0];
-                }
-
-                byte[] lastT = new byte[0];
-
-                try
-                {
-                    int n = (int)Math.Ceiling((double)length / hashLength);
-                    byte[] finalKey = new byte[length];
-                    int nPendingBytes = length;
-
-                    hmac.Key = prk;
-
-                    for (int i = 0; i < n && nPendingBytes > 0; i++)
-                    {
-                        byte[] input = PrepareExpandInput(lastT, info, i + 1);
-
-                        if (lastT.Length > 0)
-                        {
-                            // don't keep any part of the OKM in memory, if not needed anymore
-                            Array.Clear(lastT, 0, lastT.Length);
-                        }
-
-                        lastT = hmac.ComputeHash(input);
-
-                        Buffer.BlockCopy(lastT, 0, finalKey, i * hashLength, Math.Min(lastT.Length, nPendingBytes));
-
-                        nPendingBytes -= lastT.Length;
-                    }
-
-                    return finalKey;
-                }
-                finally
-                {
                     if (lastT.Length > 0)
                     {
                         // don't keep any part of the OKM in memory, if not needed anymore
                         Array.Clear(lastT, 0, lastT.Length);
                     }
+
+                    lastT = hmac.ComputeHash(input);
+
+                    Buffer.BlockCopy(lastT, 0, finalKey, i * hashLength, Math.Min(lastT.Length, nPendingBytes));
+
+                    nPendingBytes -= lastT.Length;
+                }
+
+                return finalKey;
+            }
+            finally
+            {
+                if (lastT.Length > 0)
+                {
+                    // don't keep any part of the OKM in memory, if not needed anymore
+                    Array.Clear(lastT, 0, lastT.Length);
                 }
             }
         }
