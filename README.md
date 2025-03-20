@@ -29,7 +29,22 @@
   * Different classes for date and time only
   * Helper methods for weekdays, months and years
 
-### NuniToolbox.Ui
+### NuniToolbox.Mvvm
+* Commands
+  * Implementation of a simple command taking delegates for the `Execute` and `CanExecute` logic
+* ViewModel
+  * Base class for view model objects
+  * Ready to use view model for selections
+  * Special view model for window content
+
+### NuniToolbox.Wpf
+* Converters
+  * Boolean algebra
+  * `null` to `bool` or `Visibility`
+  * Empty collection to `bool` or `Visibility`
+  * Common conversions for displaying purposes
+
+### NuniToolbox.Ui (discontinued)
 * Commands
   * Implementation of a simple command taking delegates for the `Execute` and `CanExecute` logic
 * Converters
