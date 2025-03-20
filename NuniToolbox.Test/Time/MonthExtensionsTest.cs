@@ -96,13 +96,7 @@ namespace NuniToolbox.Test.Time
             CultureInfo deCultureInfo = CultureInfo.CreateSpecificCulture("de");
 
             Assert.Equal("Mar", month.ShortName(enCultureInfo));
-
-            // .NET 5.0 formats March in German as 'Mär' while versions before as 'Mrz'
-#if NET50
             Assert.Equal("Mär", month.ShortName(deCultureInfo));
-#else
-            Assert.Equal("Mrz", month.ShortName(deCultureInfo));
-#endif
         }
     }
 }
