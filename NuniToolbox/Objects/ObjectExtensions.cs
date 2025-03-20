@@ -1,108 +1,98 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
+﻿using NuniToolbox.Collections;
 
-using NuniToolbox.Collections;
+namespace NuniToolbox.Objects;
 
-namespace NuniToolbox.Objects
+/// <summary>
+/// A class with generic extension methods for objects.
+/// </summary>
+public static class ObjectExtensions
 {
     /// <summary>
-    /// A class with generic extension methods for objects.
+    /// Returns a shallow copy of the speficied object.
     /// </summary>
-    public static class ObjectExtensions
+    /// <typeparam name="T"></typeparam>
+    /// <param name="obj">The object to copy</param>
+    /// <param name="excludedProperties">Collection of property names to exclude</param>
+    /// <returns></returns>
+    public static T ShallowCopy<T>(this T obj, ICollection<string> excludedProperties = null) where T : new()
     {
-        /// <summary>
-        /// Returns a shallow copy of the speficied object.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj">The object to copy</param>
-        /// <param name="excludedProperties">Collection of property names to exclude</param>
-        /// <returns></returns>
-        public static T ShallowCopy<T>(this T obj, ICollection<string> excludedProperties = null) where T : new()
+        if (excludedProperties == null)
         {
-            if (excludedProperties == null)
+            excludedProperties = new HashSet<string>();
+        }
+
+        T clonedObj = new();
+
+        clonedObj.GetType().GetProperties()
+            .Where(propertyInfo => propertyInfo.CanRead && propertyInfo.CanWrite && !excludedProperties.Contains(propertyInfo.Name))
+            .Foreach(propertyInfo => propertyInfo.SetValue(clonedObj, propertyInfo.GetValue(obj)));
+
+        return clonedObj;
+    }
+
+    /// <summary>
+    /// Returns a deep copy of the speficied object.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="obj">The object to copy</param>
+    /// <param name="excludedPropertiesByType">Collection of property names to exclude by fully qualified type name (namespace + class name)</param>
+    /// <returns></returns>
+    public static T DeepCopy<T>(this T obj, IDictionary<string, ICollection<string>> excludedPropertiesByType = null) where T : new()
+    {
+        if (obj is not null)
+        {
+            return (T)DeepCopy(obj, obj.GetType(), excludedPropertiesByType);
+        }
+        else
+        {
+            return default;
+        }
+    }
+
+    private static object DeepCopy(object obj, Type type, IDictionary<string, ICollection<string>> excludedPropertiesByType)
+    {
+        if (obj is not null)
+        {
+            if (excludedPropertiesByType == null)
             {
-                excludedProperties = new HashSet<string>();
+                excludedPropertiesByType = new Dictionary<string, ICollection<string>>();
             }
 
-            T clonedObj = new T();
+            excludedPropertiesByType.TryGetValue(type.FullName, out ICollection<string> excludedProperties);
 
-            clonedObj.GetType().GetProperties()
+            excludedProperties ??= new HashSet<string>();
+
+            object clonedObj = type.GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes);
+
+            type.GetProperties()
                 .Where(propertyInfo => propertyInfo.CanRead && propertyInfo.CanWrite && !excludedProperties.Contains(propertyInfo.Name))
-                .Foreach(propertyInfo => propertyInfo.SetValue(clonedObj, propertyInfo.GetValue(obj)));
-
-            return clonedObj;
-        }
-
-        /// <summary>
-        /// Returns a deep copy of the speficied object.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj">The object to copy</param>
-        /// <param name="excludedPropertiesByType">Collection of property names to exclude by fully qualified type name (namespace + class name)</param>
-        /// <returns></returns>
-        public static T DeepCopy<T>(this T obj, IDictionary<string, ICollection<string>> excludedPropertiesByType = null) where T : new()
-        {
-            if (obj is not null)
-            {
-                return (T)DeepCopy(obj, obj.GetType(), excludedPropertiesByType);
-            }
-            else
-            {
-                return default;
-            }
-        }
-
-        private static object DeepCopy(object obj, Type type, IDictionary<string, ICollection<string>> excludedPropertiesByType)
-        {
-            if (obj is not null)
-            {
-                if (excludedPropertiesByType == null)
+                .Foreach(propertyInfo =>
                 {
-                    excludedPropertiesByType = new Dictionary<string, ICollection<string>>();
-                }
-
-                excludedPropertiesByType.TryGetValue(type.FullName, out ICollection<string> excludedProperties);
-
-                if (excludedProperties == null)
-                {
-                    excludedProperties = new HashSet<string>();
-                }
-
-                object clonedObj = type.GetConstructor(Type.EmptyTypes).Invoke(Type.EmptyTypes);
-
-                type.GetProperties()
-                    .Where(propertyInfo => propertyInfo.CanRead && propertyInfo.CanWrite && !excludedProperties.Contains(propertyInfo.Name))
-                    .Foreach(propertyInfo =>
+                    if (propertyInfo.PropertyType.IsValueType || propertyInfo.PropertyType == typeof(string))
                     {
-                        if (propertyInfo.PropertyType.IsValueType || propertyInfo.PropertyType == typeof(string))
+                        propertyInfo.SetValue(clonedObj, propertyInfo.GetValue(obj));
+                    }
+                    else
+                    {
+                        object propertyValue = propertyInfo.GetValue(obj);
+
+                        if (propertyValue is not null)
                         {
-                            propertyInfo.SetValue(clonedObj, propertyInfo.GetValue(obj));
+                            object clonedProperty = DeepCopy(propertyValue, propertyValue.GetType(), excludedPropertiesByType);
+                            propertyInfo.SetValue(clonedObj, clonedProperty);
                         }
                         else
                         {
-                            object propertyValue = propertyInfo.GetValue(obj);
-
-                            if (propertyValue is not null)
-                            {
-                                object clonedProperty = DeepCopy(propertyValue, propertyValue.GetType(), excludedPropertiesByType);
-                                propertyInfo.SetValue(clonedObj, clonedProperty);
-                            }
-                            else
-                            {
-                                propertyInfo.SetValue(clonedObj, null);
-                            }
+                            propertyInfo.SetValue(clonedObj, null);
                         }
-                    });
+                    }
+                });
 
-                return clonedObj;
-            }
-            else
-            {
-                return null;
-            }
+            return clonedObj;
+        }
+        else
+        {
+            return null;
         }
     }
 }

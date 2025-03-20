@@ -1,32 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace NuniToolbox.Enum;
 
-namespace NuniToolbox.Enum
+/// <summary>
+/// The translation types for an enum value.
+/// </summary>
+public enum EnumTranslationType : byte
 {
     /// <summary>
-    /// The translation types for an enum value.
+    /// A default (fallback) display string.
     /// </summary>
-    public enum EnumTranslationType : byte
-    {
-        /// <summary>
-        /// A default (fallback) display string.
-        /// </summary>
-        Default,
+    Default,
 
-        /// <summary>
-        /// A singular display string.
-        /// </summary>
-        Singular,
+    /// <summary>
+    /// A singular display string.
+    /// </summary>
+    Singular,
 
-        /// <summary>
-        /// A plural display string.
-        /// </summary>
-        Plural,
+    /// <summary>
+    /// A plural display string.
+    /// </summary>
+    Plural,
 
-        /// <summary>
-        /// An abbreviated display string.
-        /// </summary>
-        Abbreviation
-    }
+    /// <summary>
+    /// An abbreviated display string.
+    /// </summary>
+    Abbreviation
 }

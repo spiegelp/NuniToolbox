@@ -1,70 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using NuniToolbox.Model;
 
-using Xunit;
+namespace NuniToolbox.Test.Model;
 
-using NuniToolbox.Model;
-
-namespace NuniToolbox.Test.Model
+public class ModelObjectTest
 {
-    public class ModelObjectTest
+    public ModelObjectTest() { }
+
+    [Fact]
+    public void Test_PropertyChanged_Ok()
     {
-        [Fact]
-        public void Test_PropertyChanged_Ok()
+        MyModel myModel = new();
+
+        string propertyName = null;
+
+        myModel.PropertyChanged += (sender, args) => propertyName = args.PropertyName;
+
+        myModel.Attribute1 = 2;
+
+        Assert.Equal(nameof(myModel.Attribute1), propertyName);
+
+        myModel.Attribute2 = 2;
+
+        Assert.Equal(nameof(myModel.Attribute2), propertyName);
+    }
+
+    public class MyModel : ModelObject
+    {
+        private int m_attribute1;
+        private int m_attribute2;
+
+        public int Attribute1
         {
-            MyModel myModel = new MyModel();
-
-            string propertyName = null;
-
-            myModel.PropertyChanged += (sender, args) => propertyName = args.PropertyName;
-
-            myModel.Attribute1 = 2;
-
-            Assert.Equal(nameof(myModel.Attribute1), propertyName);
-
-            myModel.Attribute2 = 2;
-
-            Assert.Equal(nameof(myModel.Attribute2), propertyName);
-        }
-
-        public class MyModel : ModelObject
-        {
-            private int m_attribute1;
-            private int m_attribute2;
-
-            public int Attribute1
+            get
             {
-                get
-                {
-                    return m_attribute1;
-                }
-
-                set
-                {
-                    m_attribute1 = value;
-
-                    OnPropertyChanged();
-                }
+                return m_attribute1;
             }
 
-            public int Attribute2
+            set
             {
-                get
-                {
-                    return m_attribute2;
-                }
+                m_attribute1 = value;
 
-                set
-                {
-                    m_attribute2 = value;
+                OnPropertyChanged();
+            }
+        }
 
-                    OnPropertyChanged(nameof(Attribute2));
-                }
+        public int Attribute2
+        {
+            get
+            {
+                return m_attribute2;
             }
 
-            public MyModel() : base() { }
+            set
+            {
+                m_attribute2 = value;
+
+                OnPropertyChanged(nameof(Attribute2));
+            }
         }
+
+        public MyModel() : base() { }
     }
 }

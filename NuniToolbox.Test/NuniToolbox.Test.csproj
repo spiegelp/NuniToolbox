@@ -26,4 +26,8 @@
     <ProjectReference Include="..\NuniToolbox\NuniToolbox.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
 </Project>
