@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NuniToolbox.Mvvm.Commands;
+﻿namespace NuniToolbox.Mvvm.Commands;
 
 /// <summary>
 /// A simple, ready to use command implementation without a command parameter.

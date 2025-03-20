@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace NuniToolbox.Mvvm.Commands;
 
