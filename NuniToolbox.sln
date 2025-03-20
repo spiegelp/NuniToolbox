@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuniToolbox.Mvvm", "NuniToo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuniToolbox.Mvvm.Test", "NuniToolbox.Mvvm.Test\NuniToolbox.Mvvm.Test.csproj", "{18C3C0AD-F914-4B05-8E0B-D83EDF30DD4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuniToolbox.Wpf", "NuniToolbox.Wpf\NuniToolbox.Wpf.csproj", "{18717BEB-C9E7-4D45-B765-C5433D0A6794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuniToolbox.Wpf.Test", "NuniToolbox.Wpf.Test\NuniToolbox.Wpf.Test.csproj", "{A30A5517-6448-4D2E-99F8-FFA3A4977ACD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{18C3C0AD-F914-4B05-8E0B-D83EDF30DD4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18C3C0AD-F914-4B05-8E0B-D83EDF30DD4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18C3C0AD-F914-4B05-8E0B-D83EDF30DD4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18717BEB-C9E7-4D45-B765-C5433D0A6794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18717BEB-C9E7-4D45-B765-C5433D0A6794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18717BEB-C9E7-4D45-B765-C5433D0A6794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18717BEB-C9E7-4D45-B765-C5433D0A6794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A30A5517-6448-4D2E-99F8-FFA3A4977ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A30A5517-6448-4D2E-99F8-FFA3A4977ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A30A5517-6448-4D2E-99F8-FFA3A4977ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A30A5517-6448-4D2E-99F8-FFA3A4977ACD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
